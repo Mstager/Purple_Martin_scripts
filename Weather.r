@@ -1,4 +1,8 @@
-#WEATHER DATA
+#Analyses of weather during the 2021 winter storm event
+
+#sampling sites
+sites <- read.csv("/Users/Maria/Google_Drive/Manuscripts/PUMA_mass_mortality/PUMA_code/Table_S4.csv")
+
 #downloading 25 years of data (1995 to 2020) for each unique site and storing in location25ls
 library(daymetr)
 location25ls <- list()
@@ -12,7 +16,6 @@ for(i in 1:nrow(sites)){
   #select only Feb dates
   location25ls <- c(location25ls, list(clim25$data[clim25$data$yday>31&clim25$data$yday<60,]))
 }
-#write.csv(location25ls, "clim_data_25yrs.csv")
 
 
 #finding mean and standard deviation for each climate variable per location
@@ -61,7 +64,6 @@ for(i in 1:nrow(sites)){
   #select only Feb dates
   febclimdata <- c(febclimdata, list(clim2021$data[clim2021$data$yday>31&clim2021$data$yday<60,]))
 }
-#write.csv(febclimdata,"febclimdata2021.csv")
 
 #calculate distance from mean for feb 2021 in terms of standard deviation and store in sdplotdf
 sdtminls <- list()
