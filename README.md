@@ -4,7 +4,7 @@
 
 
 ### Genomic analyses
-1) **PUMA Notebook.md** 
+1) **PUMA Notebook.md** \
   overview of pipeline to clean, map, and genotype raw reads for whole genome sequencing and poolseq
 
 2) **Psubis_filter_24Sept24.log** 
