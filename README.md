@@ -5,11 +5,11 @@
 
 ### Genomic analyses
 1) **PUMA Notebook.md** 
-   /overview of pipeline to clean, map, and genotype raw reads for whole genome sequencing and poolseq
+  overview of pipeline to clean, map, and genotype raw reads for whole genome sequencing and poolseq
 
 2) **Psubis_filter_24Sept24.log** 
-   commands to produce final filtered vcf using vcftools
-   removed 5 individuals that showed high degree of relatedness (>= to full siblings or parent-offspring)
+  commands to produce final filtered vcf using vcftools
+  removed 5 individuals that showed high degree of relatedness (>= to full siblings or parent-offspring)
 
 3) **PUMA_WGS_sample_info_NoInbred.csv**
    List of samples (related birds excluded), file important for generating PCA.
