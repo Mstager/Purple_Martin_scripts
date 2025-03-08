@@ -46,12 +46,15 @@ for (dir_name in dirs_to_create) {
 ###################################
 ##### Download gridded climate data ###
 
-
 #### setting a high timeout limit of 10 minutes 
 
 options(timeout=600)
 
 ######### download monthly gridded tmin from 1895 to present
+
+#Data Source: Average temperature data from NOAA Monthly U.S. Climate Gridded Dataset. https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00332
+#Citation: Vose, Russell S., Applequist, Scott, Squires, Mike, Durre, Imke, Menne, Matthew J., Williams, Claude N. Jr., Fenimore, Chris, Gleason, Karin, and Arndt, Derek (2014): NOAA Monthly U.S. Climate Gridded Dataset (NClimGrid), Version 1. [1960 and 2022]. NOAA National Centers for Environmental Information. DOI:10.7289/V5SX6B56 [11/4/2023].
+
 # Define the URL
 url <- "https://www.ncei.noaa.gov/data/nclimgrid-monthly/access/nclimgrid_tmin.nc"
 
@@ -78,6 +81,15 @@ download.file(url, dest_file, mode = "wb")
 ##########
 ## download the US county centroid shapefile ##
 ######## 
+#Data Source: US county centroid shapefile from the National Weather Service. https://www.weather.gov/gis/Counties
+#Citation Information:
+#Originator: National Weather Service
+#Publication Date: 1995
+#Title: Counties of U.S.
+#Geospatial Data Presentation Form: vector digital data
+#Publication Place: Silver Spring, MD
+#Publisher: National Weather Service
+#Online Linkage: National Weather Service Geodata
 
 # Define the URL
 url <- "https://www.weather.gov/source/gis/Shapefiles/County/c_08mr23.zip"
