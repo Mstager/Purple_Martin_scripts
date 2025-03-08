@@ -70,9 +70,16 @@ List of samples (related birds excluded), file important for generating PCA.
 ### Weather analyses
 
 	7) Figure1a.r
-   		R script for generating Figure 1a
+   		R script for generating Figure 1a using data in Table_S4.csv and 2021_scout-arrival-data-pre-Feb20.csv
      
 	8) Weather.r
-		R script for conducting weather anomaly analyses and generating Figures 1b, 1c, 1d
-  
+		R script for conducting weather anomaly analyses and generating Figures 1b using data in Table_S4.csv
+
+
 	9) 		
+
+#### Body composition analyses
+	10) QMR.r
+ 		R script for conducting body composition analyses using QMR data
+
+### Scout arrival 
