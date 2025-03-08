@@ -14,66 +14,66 @@
 3) **PUMA_WGS_sample_info_NoInbred.csv** \
    List of samples (related birds excluded), file important for generating PCA.
 
-4) PCA directory:
-	4a) PUMA_PCA.py
+4) PCA directory: \
+	4a) **PUMA_PCA.py** \
 			Code for performing principal components analysis that also removes singletons 
-			and performs LD pruning to generate unlinked SNP dataset.
-	4b) functions for performing and plotting PCA analyses with PUMA_PCA.py
+			and performs LD pruning to generate unlinked SNP dataset. \
+	4b) functions for performing and plotting PCA analyses with PUMA_PCA.py \
 	
-5) Genomc_scan directory:
-	5a) vcftools_logs:
+5) Genomc_scan directory: \
+	5a) **vcftools_logs**: \
 		log files showing commands to estimate Fst, nucleotide diversity (Pi), and Tajima's D (tajd)
-		in 25Kb non-overlapping windows in VCFtools.
+		in 25Kb non-overlapping windows in VCFtools. \
 	
-	5b) VCFtools_output:
+	5b) VCFtools_output: \
 		Vcftools output files showing Fst, pi, and tajd values in 25kb windows. Pi and Tajd
 		files are in .csv format that combined storm and post-storm results into single file
-		for plotting.
+		for plotting. \
 		
-	5c) PUMAlift_genes_sorted.gff
+	5c) **PUMAlift_genes_sorted.gff** \
 		Genome annotations for the Purple Martin genome. Derived from a liftover of gene annotations
 		from the Barn Swallow genome (NCBI) to Purple Martin. A Purple Martin annotation is available,
-		but has significantly fewer genes. 
+		but has significantly fewer genes. \
 		
-	5d) VCFtools_Fst_windows.py, VCFtools_Pi_windows.py, VCFtools_TajD_windows.py
+	5d) **VCFtools_Fst_windows.py**, **VCFtools_Pi_windows.py**, **VCFtools_TajD_windows.py** \
 		Python scripts to identify outlier windows from VCFtools_output for each statistic (5b) and provide
-		annotations for the windows based on .gff file (5c).
+		annotations for the windows based on .gff file (5c). \
 		
-	5e) purple_scafs_ordered_by_chicken.csv
-		Map showing alignment of Purple Martin scaffolds to chicken chromosomes
+	5e) **purple_scafs_ordered_by_chicken.csv** \
+		Map showing alignment of Purple Martin scaffolds to chicken chromosomes \
 	
-	5f) Puma_fst_manhattan
+	5f) **Puma_fst_manhattan.r** \
 		R script for assigning windows to chicken chromosomes and generating manhattan plots
 		for Fst, Pi, and Tajima's D. PUMA_fst_orderedchr_26Sept.csv is an intermediate file
-		that required some manual sorting of windows along each chicken chromosome. 
+		that required some manual sorting of windows along each chicken chromosome. \
 
-6) AlleleFrequencyChange directory:
-	Scripts for analysis of POOLSEQ dataset.
+6) AlleleFrequencyChange directory: \
+	Scripts for analysis of POOLSEQ dataset. \
 	
-	6a) PoolseqAFparse.py
-		Python script to intersect SNPs from poolseq analysis with Fst outliers
+	6a) **PoolseqAFparse.py** \
+		Python script to intersect SNPs from poolseq analysis with Fst outliers \
 	
-	6b) OutlierSNPS_23Dec.csv
-		Allele frequencies for Fst outlier SNPs. For input to R
+	6b) **OutlierSNPS_23Dec.csv** \
+		Allele frequencies for Fst outlier SNPs. For input to R \
 	
-	6c) OutlierSNPsR
-		Rscript to identify SNPs varying significantly with latitude.
+	6c) **OutlierSNPsR** \
+		Rscript to identify SNPs varying significantly with latitude. \
 	
-	6d) PUMA_nonoutlier_100k_subset_sorted.bed
+	6d) **PUMA_nonoutlier_100k_subset_sorted.bed** \
 		Non-outlier SNPs for input to 6e and used to determine threshold for signifcant
-		AF change.	
+		AF change. \	
 	
-	6e) TimeSeries_data
-		Rscript to determine SNPs that significantly change across time points in Texas.
+	6e) TimeSeries_data \
+		Rscript to determine SNPs that significantly change across time points in Texas. \
 
 
 ### Weather analyses
 
-7) Figure1a.r \
-   R script for generating Figure 1a using data in Table_S4.csv and 2021_scout-arrival-data-pre-Feb20.csv
+7) **Figure1a.r** \
+   R script for generating Figure 1a using data in **Table_S4.csv** and **2021_scout-arrival-data-pre-Feb20.csv** \
      
-8) Weather.r \
-   R script for conducting weather anomaly analyses and generating Figures 1b using data in Table_S4.csv
+8) **Weather.r** \
+   R script for conducting weather anomaly analyses and generating Figures 1b using data in **Table_S4.csv** \
 
 ### Morphological analyses
 
@@ -81,11 +81,12 @@
 
 #### Body composition analyses
 	
-10) QMR.r \
-    R script for conducting body composition analyses using Quantititave Magnetic Resonance data from carcasses
+10) **QMR.r** \
+    R script for conducting body composition analyses using Quantititave Magnetic Resonance data from carcasses \
 
 ### Scout arrival 
 
-11) Scout_arrivals directory:
-	11a) Analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data. 
-	11b) Redacted data (without observer names) is provided for each of the 10 focal states from 1998 through 2024 in the Scout_arrivals folder. Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
+11) Scout_arrivals directory: \
+	11a) **Scout_arrival.r** \
+		Analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and plots for Figures 2a, 2b, and S2. \
+	11b) Scout arrival data for each of the 10 focal states from 1998 through 2024 in .csv format (redacted: without observer names). Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
