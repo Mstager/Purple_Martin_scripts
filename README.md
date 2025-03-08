@@ -1,12 +1,12 @@
 # Purple_Martin_scripts
 
-####Data and code files for: 
-##Stager et al. _in review_ "Immediate and long-term consequences of a storm-induced mass mortality event"##
+## Data and code files for: 
+### Stager et al. _in review_ "Immediate and long-term consequences of a storm-induced mass mortality event"##
 
 
 
 
-########genomic analyses###################
+Genomic analyses
 1) PUMA Notebook.pdf 
 overview of pipeline to clean, map, and genotype raw reads for whole genome sequencing and poolseq
 
