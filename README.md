@@ -1,6 +1,6 @@
 # Purple_Martin_scripts
 
-## Data and code files for: Stager et al. _in review_ "Immediate and long-term consequences of a storm-induced mass mortality event"##
+## Data and code files for: Stager et al. _in review_ "Immediate and long-term consequences of a storm-induced mass mortality event"
 
 
 
