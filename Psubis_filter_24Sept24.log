@@ -1,0 +1,25 @@
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf Psubis.vcf.gz
+	--exclude Inbred_samples.txt
+	--max-alleles 2
+	--maxDP 45
+	--max-meanDP 45
+	--min-alleles 2
+	--minDP 5
+	--min-meanDP 5
+	--minQ 20
+	--max-missing 0.9
+	--out Psubis_filter_24Sept24
+	--recode
+	--remove-indels
+
+Using zlib version: 1.2.5
+Excluding individuals in 'exclude' list
+After filtering, kept 61 out of 66 Individuals
+Outputting VCF file...
+After filtering, kept 13444097 out of a possible 22500709 Sites
+Run Time = 3063.00 seconds
