@@ -1,0 +1,15 @@
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf Psubis_filter_24Sept24.recode.vcf
+	--keep StormPUMA_noInbred.txt
+	--out PUMA_storm_25sept_tajd
+	--TajimaD 25000
+
+Keeping individuals in 'keep' list
+After filtering, kept 27 out of 61 Individuals
+Outputting Tajima's D Statistic...
+After filtering, kept 13444097 out of a possible 13444097 Sites
+Run Time = 425.00 seconds

@@ -1,0 +1,20 @@
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf Psubis_filter_24Sept24.recode.vcf
+	--fst-window-size 25000
+	--weir-fst-pop PostStormPUMA_noInbred.txt
+	--weir-fst-pop StormPUMA_noInbred.txt
+	--keep PostStormPUMA_noInbred.txt
+	--keep StormPUMA_noInbred.txt
+	--out PsubisFst_25Sept2024
+
+Keeping individuals in 'keep' list
+After filtering, kept 61 out of 61 Individuals
+Outputting Windowed Weir and Cockerham Fst estimates.
+Weir and Cockerham mean Fst estimate: -9.9666e-05
+Weir and Cockerham weighted Fst estimate: 0.00015362
+After filtering, kept 13444097 out of a possible 13444097 Sites
+Run Time = 444.00 seconds
