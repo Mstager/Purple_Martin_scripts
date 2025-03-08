@@ -5,14 +5,14 @@
 
 ### Genomic analyses
 1) PUMA Notebook.md 
-overview of pipeline to clean, map, and genotype raw reads for whole genome sequencing and poolseq
+   overview of pipeline to clean, map, and genotype raw reads for whole genome sequencing and poolseq
 
 2) Psubis_filter_24Sept24.log 
-commands to produce final filtered vcf using vcftools
-removed 5 individuals that showed high degree of relatedness (>= to full siblings or parent-offspring)
+   commands to produce final filtered vcf using vcftools
+   removed 5 individuals that showed high degree of relatedness (>= to full siblings or parent-offspring)
 
 3) PUMA_WGS_sample_info_NoInbred.csv
-List of samples (related birds excluded), file important for generating PCA.
+   List of samples (related birds excluded), file important for generating PCA.
 
 4) PCA directory:
 	4a) PUMA_PCA.py
@@ -69,17 +69,23 @@ List of samples (related birds excluded), file important for generating PCA.
 
 ### Weather analyses
 
-	7) Figure1a.r
-   		R script for generating Figure 1a using data in Table_S4.csv and 2021_scout-arrival-data-pre-Feb20.csv
+7) Figure1a.r
+   R script for generating Figure 1a using data in Table_S4.csv and 2021_scout-arrival-data-pre-Feb20.csv
      
-	8) Weather.r
-		R script for conducting weather anomaly analyses and generating Figures 1b using data in Table_S4.csv
+8) Weather.r
+   R script for conducting weather anomaly analyses and generating Figures 1b using data in Table_S4.csv
 
+### Morphological analyses
 
-	9) 		
+9) 		
 
 #### Body composition analyses
-	10) QMR.r
- 		R script for conducting body composition analyses using QMR data
+	
+10) QMR.r
+    R script for conducting body composition analyses using Quantititave Magnetic Resonance data from carcasses
 
 ### Scout arrival 
+
+11)
+   Analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data. Data can be obtained directly from 
+https://www.purplemartin.org/research/8/scout-arrival-study/. Redacted date (without observer names) is provided for each of the 10 focal states from 1998 through 2024 in the Scout_arrivals folder.
