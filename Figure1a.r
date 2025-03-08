@@ -1,4 +1,4 @@
-##Code to generate Figure 1a
+##R Code to generate Figure 1a
 
 
 #Download and plot NOAA climate data
