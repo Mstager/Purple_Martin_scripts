@@ -3,8 +3,6 @@
 ## Data and code for: Stager et al. _in review_ "Immediate and long-term consequences of a storm-induced mass mortality event"
 
 
-
-
 ### Genomic analyses
 1) PUMA Notebook.md 
 overview of pipeline to clean, map, and genotype raw reads for whole genome sequencing and poolseq
@@ -67,3 +65,14 @@ List of samples (related birds excluded), file important for generating PCA.
 	
 	6e) TimeSeries_data
 		Rscript to determine SNPs that significantly change across time points in Texas.
+
+
+### Weather analyses
+
+	7) Figure1a.r
+   		R script for generating Figure 1a
+     
+	8) Weather.r
+		R script for conducting weather anomaly analyses and generating Figures 1b, 1c, 1d
+  
+	9) 		
