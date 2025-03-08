@@ -14,8 +14,6 @@ lapply(packages, require,character.only = T)
 
 source_url("https://github.com/SamMajumder/GeoVizHub/blob/main/TempDiffUS/Code/Functions.R")
 
-# Check if "Datasets" and "Figures" folder exists, if not, create it
-
 # List of directories to create
 dirs_to_create <- c("RawDatasets","ProcessedDatasets2021")
 
@@ -256,7 +254,7 @@ Avg_temp_change <- Min_temp_2021 %>%
 
 ##############################################################################
 
-# PMCA Scout Arrival data for the 2021 season
+# PMCA Scout Arrival data for the 2021 season up to Feb 20
 
 pmca <- read.csv("2021_scout-arrival-data-pre_Feb20.csv")
 
