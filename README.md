@@ -42,7 +42,7 @@
 	5e) **purple_scafs_ordered_by_chicken.csv** \
 		Map showing alignment of Purple Martin scaffolds to chicken chromosomes \
 	
-	5f) **Puma_fst_manhattan.r** \
+	5f) **Puma_fst_manhattan.R** \
 		R script for assigning windows to chicken chromosomes and generating manhattan plots
 		for Fst, Pi, and Tajima's D. PUMA_fst_orderedchr_26Sept.csv is an intermediate file
 		that required some manual sorting of windows along each chicken chromosome. \
@@ -63,17 +63,17 @@
 		Non-outlier SNPs for input to 6e and used to determine threshold for signifcant
 		AF change. \	
 	
-	6e) **TimeSeries_data.r** \
+	6e) **TimeSeries_data.R** \
 		Rscript to determine SNPs that significantly change across time points in Texas. \
 
 
 ### Weather analyses
 
-7) **Figure1a.r** \
-   R script for generating Figure 1a using data in **Table_S4.csv** and **2021_scout-arrival-data-pre-Feb20.csv** \
-     
-8) **Weather.r** \
-   R script for conducting weather anomaly analyses and generating Figures 1b using data in **Table_S4.csv** \
+7) *Weather* directory: \
+   	7a) **Figure1a.r** \
+  		R script for generating Figure 1a using data in **Table_S4.csv** and **2021_scout-arrival-data-pre-Feb20.csv** \
+	7b) **Weather.r** \
+   		R script for conducting weather anomaly analyses and generating Figures 1b using data in **Table_S4.csv** \
 
 ### Morphological analyses
 
