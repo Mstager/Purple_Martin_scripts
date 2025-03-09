@@ -44,7 +44,7 @@
 	
 	5f) **Puma_fst_manhattan.R** \
 		R script for assigning windows to chicken chromosomes and generating manhattan plots
-		for Fst, Pi, and Tajima's D. PUMA_fst_orderedchr_26Sept.csv is an intermediate file
+		for Fst, Pi, and Tajima's D. **PUMA_fst_orderedchr_26Sept.csv** is an intermediate file
 		that required some manual sorting of windows along each chicken chromosome. 
 
 6) *AlleleFrequencyChange* directory: \
@@ -71,7 +71,7 @@
 
 7) *Weather* directory: \
    	7a) **Figure1a.R** \
-  		R script for generating Figure 1a; requires **Table_S4.csv** and **2021_scout-arrival-data-pre-Feb20.csv**. 
+  		R script for generating Figure 1a; requires **Table_S4.csv** (list of sampling sites) and **2021_scout-arrival-data-pre-Feb20.csv** (scout arrival locations for the 2021 season up to Feb 20). 
    
 	7b) **Weather.R** \
    		R script for conducting weather anomaly analyses and generating Figures 1b; requires **Table_S4.csv**.
