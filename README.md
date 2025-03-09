@@ -70,10 +70,11 @@
 ### Weather analyses
 
 7) *Weather* directory: \
-   	7a) **Figure1a.r** \
-  		R script for generating Figure 1a using data in **Table_S4.csv** and **2021_scout-arrival-data-pre-Feb20.csv** \
-	7b) **Weather.r** \
-   		R script for conducting weather anomaly analyses and generating Figures 1b using data in **Table_S4.csv** \
+   	7a) **Figure1a.R** \
+  		R script for generating Figure 1a; requires **Table_S4.csv** and **2021_scout-arrival-data-pre-Feb20.csv** \
+   
+	7b) **Weather.R** \
+   		R script for conducting weather anomaly analyses and generating Figures 1b; requires **Table_S4.csv** \
 
 ### Morphological analyses
 
