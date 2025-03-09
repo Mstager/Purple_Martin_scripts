@@ -78,18 +78,14 @@
 
 ### Morphological and body composition analyses
 
-8) 		
-
-
-	
-9) **QMR.r** \
-    R script for conducting body composition analyses using quantititave magnetic resonance data from carcasses.
+8) **QMR.r** \
+    R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses.
 
 ### Scout arrival 
 
-10) *Scout_arrivals* directory: \
-	10a) **XX_arrivals.csv** files \
+9) *Scout_arrivals* directory: \
+	9a) **XX_arrivals.csv** files \
 	Scout arrival data for each of the 10 focal states from 1998 through 2024 in .csv format (redacted: without observer names). Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
 	
-	10b) **Scout_arrival.R** \
+	9b) **Scout_arrival.R** \
 	R script for performing analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2. 
