@@ -81,11 +81,17 @@
 8) **QMR.r** \
     R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses.
 
-### Scout arrival 
+### Trends in arrival and nesting analyses
 
 9) *Scout_arrivals* directory: \
 	9a) **XX_arrivals.csv** files \
 	Scout arrival data for each of the 10 focal states from 1998 through 2024 in .csv format (redacted, without observer names). Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
 	
 	9b) **Scout_arrival.R** \
-	R script for performing analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2. 
+	R script for performing analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2.
+
+10) *Nest* directory: \
+	10a) **Nest.R** \
+	R script for perfoming analyses of trends in nesting using data from Purple Martin Conservation Association Project MartinWatch.
+	10b) **PMW_Nestdata.csv** \
+	
