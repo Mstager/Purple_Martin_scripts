@@ -88,6 +88,8 @@
 ### Scout arrival 
 
 11) *Scout_arrivals* directory: \
-	11a) **Scout_arrival.r** \
-		Analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and plots for Figures 2a, 2b, and S2. 
-	11b) Scout arrival data for each of the 10 focal states from 1998 through 2024 in .csv format (redacted: without observer names). Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
+	11a) **XX_arrivals.csv** files \
+	Scout arrival data for each of the 10 focal states from 1998 through 2024 in .csv format (redacted: without observer names). Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
+	
+ 	11b) **Scout_arrival.R** \
+	Analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and plots for Figures 2a-2c, and S2. 
