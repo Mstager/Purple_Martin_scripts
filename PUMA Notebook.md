@@ -1,22 +1,22 @@
 # Purple Martin (*Progne subis*) Population Genomic Study
 
-Anna Forsman^1^, Maria Stager^2^, and **Robert R Fitak**^3^; ^1^Department of Biology, Colby College; ^2^Department of Biology, University of Massachusetts Amherst; ^3^Department of Biology; Genomics and Bioinformatics Cluster, University of Central Florida
+**Robert R Fitak**^1^; ^1^Department of Biology; Genomics and Bioinformatics Cluster, University of Central Florida
 
 ### Project Description
 
-To be completed later.
+Whole-genome sequencing of 66 Purple Martins was performed as part of Stager et al. _In review_. "Immediate and long-term consequences of a storm-induced mass mortality event."
 
 
 
 ### Sample Collection
 
-To be completed by Anna/Maria. Raw sequencing data for 66 samples were received at UCF.
+Purple Martin samples include 37 breeding individuals collected in May 2021 and 29 deceased individuals. Sample information is provided in Table S6.  
 
 
 
 ### DNA Extraction/Library Preparation/Sequencing
 
-To be complete by Anna Forsman.
+DNA was extracted from blood or muscle samples using Qiagen DNeasy Blood & Tissue Kit or New England Biolabs Monarch Spin gDNA Extraction Kit. Extracts were sent to Novogene for whole-genome library preparation and sequencing. Raw sequencing data for 66 samples were received at UCF. Raw sequences are deposited on NCBI's Sequence Read Archive (BioProject #).
 
 *From Novogene's report summary:*
 
