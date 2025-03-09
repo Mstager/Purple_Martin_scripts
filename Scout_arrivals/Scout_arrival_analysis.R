@@ -122,6 +122,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="TX")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meantx, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"TX_anomalous_arrivals.csv")
 
 ################################
 
@@ -246,6 +247,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="LA")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanla, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"LA_anomalous_arrivals.csv")
 
 ###############################################
 
@@ -363,6 +365,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="MS")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanms, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"MS_anomalous_arrivals.csv")
 
 #####################################
 
@@ -481,6 +484,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="AR")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanar, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"AR_anomalous_arrivals.csv")
 
 ###################################################
 
@@ -597,6 +601,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="OK")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanok, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"OK_anomalous_arrivals.csv")
 
 ##################################################
 
@@ -713,6 +718,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="AL")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanal, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"AL_anomalous_arrivals.csv")
 
 ###################################################
 
@@ -830,6 +836,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="GA")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanga, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"GA_anomalous_arrivals.csv")
 
 ##################################################
 
@@ -973,6 +980,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="FL")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanfl, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"FL_anomalous_arrivals.csv")
 
 #####################################################
   
@@ -1091,6 +1099,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="SC")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meansc, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"SC_anomalous_arrivals.csv")
   
 ####################################################### 
  
@@ -1209,6 +1218,7 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="TN")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meantn, format = "%y%m%d")$yday 
 }
+write.csv(arrival_anomaly,"TN_anomalous_arrivals.csv")
 
 ######################################################
 
