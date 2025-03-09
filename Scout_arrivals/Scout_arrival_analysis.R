@@ -1,24 +1,25 @@
-#SCOUT ARRIVAL DATA
-#getting scout arrival data
+###Script for conducting analyses related to martin first arrivals over time
+
+#Purple Martin Scout Arrival Data can be found at: https://www.purplemartin.org/research/8/scout-arrival-study/
+
+library(lubridate)
+
+#read in scout arrivals by state
+
+#TX
 sadtx <- read.csv("Scout_arrivals/TX_arrivals.csv") 
 sadtx$NAME <- NULL
 
-nrow(sadtx) #10687
-
 #select adults only
-sadtx<- sadtx[sadtx$AGE == "Adult",]
+sadtx<- sadtx[sadtx$AGE == "Adult",] 
 
-#remove dates after May 31
-nrow(sadtx[grep("^6/", sadtx$DATE),]) #1
-sadtx<-sadtx[-grep("^6/", sadtx$DATE),]
+#remove dates after May 31 because birds should arrive by then
+nrow(sadtx[grep("^6/", sadtx$DATE),]) #1 date after May 31
+sadtx<-sadtx[-grep("^6/", sadtx$DATE),] #remove dates after May 31
 
 #number of arrivals
 nrow(sadtx) #9589
 
-library(lubridate)
-
-
-#TX
 sadtx$Month_Day <- format(mdy(sadtx$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
@@ -94,7 +95,7 @@ mean(min_arrival_tx[1:24]) #mean min arrival from 1998-2021
 min_arrival_tx[25]
 
 
-#plot the data vertically
+#plot the data 
 #3 Dec dates (2002 and 2009) need to be plotted separately
 ggplot(sadtx[-grep("^12/", sadtx$DATE),], aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
   geom_rect(xmin = meantx-(2*sdtx), xmax = meantx+(2*sdtx), ymin = 1997, ymax = 2025, fill = "gray 91") + 
@@ -121,14 +122,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="TX")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meantx, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"TX_anomalous_arrivals.csv")
 
-
+################################
 
 #LA
 sadla <- read.csv("Scout_arrivals/LA_arrivals.csv")
 sadla$NAME <- NULL
-nrow(sadla) #3481
 
 #select adults only
 sadla<- sadla[sadla$AGE == "Adult",]
@@ -247,14 +246,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="LA")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanla, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"LA_anomalous_arrivals.csv")
 
-
+###############################################
 
 #MS
 sadms <- read.csv("Scout_arrivals/MS_arrivals.csv")
 sadms$NAME <- NULL
-nrow(sadms) #1455
 
 #select adults only
 sadms<- sadms[sadms$AGE == "Adult",]
@@ -366,14 +363,13 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="MS")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanms, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"MS_anomalous_arrivals.csv")
 
+#####################################
 
 
 #AR
 sadar <- read.csv("Scout_arrivals/AR_arrivals.csv")
 sadar$NAME <- NULL
-nrow(sadar) #1682
 
 #select adults only
 sadar<- sadar[sadar$AGE == "Adult",]
@@ -485,14 +481,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="AR")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanar, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"AR_anomalous_arrivals.csv")
 
-
+###################################################
 
 #OK
 sadok <- read.csv("Scout_arrivals/OK_arrivals.csv")
 sadok$NAME <- NULL
-nrow(sadok) #2181
 
 #select adults only
 sadok<- sadok[sadok$AGE == "Adult",]
@@ -603,13 +597,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="OK")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanok, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"OK_anomalous_arrivals.csv")
 
+##################################################
 
 #AL
 sadal <- read.csv("Scout_arrivals/AL_arrivals.csv")
 sadal$NAME <- NULL
-nrow(sadal) #2513
 
 #select adults only
 sadal<- sadal[sadal$AGE == "Adult",]
@@ -720,13 +713,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="AL")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanal, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"AL_anomalous_arrivals.csv")
 
+###################################################
 
 #GA
 sadga <- read.csv("Scout_arrivals/GA_arrivals.csv")
 sadga$NAME <- NULL
-nrow(sadga) #1926
 
 #select adults only
 sadga<- sadga[sadga$AGE == "Adult",]
@@ -838,13 +830,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="GA")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanga, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"GA_anomalous_arrivals.csv")
 
+##################################################
 
 #FL
 sadfl <- read.csv("Scout_arrivals/FL_arrivals.csv")
 sadfl$NAME <- NULL
-nrow(sadfl) #4023
 
 #select adults only
 sadfl<- sadfl[sadfl$AGE == "Adult",]
@@ -982,13 +973,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="FL")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanfl, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"FL_anomalous_arrivals.csv")
-  
+
+#####################################################
   
 #SC
 sadsc <- read.csv("Scout_arrivals/SC_arrivals.csv")
 sadsc$NAME <- NULL
-nrow(sadsc) #1932
 
 #select adults only
 sadsc<- sadsc[sadsc$AGE == "Adult",]
@@ -1101,14 +1091,12 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="SC")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meansc, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"SC_anomalous_arrivals.csv")
   
- 
+####################################################### 
  
 #TN
 sadtn <- read.csv("Scout_arrivals/TN_arrivals.csv")
 sadtn$NAME <- NULL
-nrow(sadtn) #2571
 
 #select adults only
 sadtn<- sadtn[sadtn$AGE == "Adult",]
@@ -1221,12 +1209,11 @@ arrival_anomaly<-data.frame(year = rev(c(1998:2024)), anomaly=NA, state="TN")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meantn, format = "%y%m%d")$yday 
 }
-#write.csv(arrival_anomaly,"TN_anomalous_arrivals.csv")  
 
+######################################################
 
-
-#########
-#plot deviations from the mean for 2022 by state 
+#############
+#plot deviations from the mean for 2022 by state (Figure 2c)
 devs<-data.frame(states=rep(factor(c("LA", "TX", "MS", "AL", "AR", "TN", "OK", "GA", "SC", "FL"), c("LA", "TX", "MS", "AL", "AR", "TN", "OK", "GA", "SC", "FL")),3),
 devs= c(as.numeric(la_2022-meanla),as.numeric(tx_2022-meantx),as.numeric(ms_2022-meanms),as.numeric(al_2022-meanal),as.numeric(ar_2022-meanar),as.numeric(tn_2022-meantn),as.numeric(ok_2022-meanok),as.numeric(ga_2022-meanga),as.numeric(sc_2022-meansc),as.numeric(fl_2022-meanfl), as.numeric(la_2023-meanla),as.numeric(tx_2023-meantx),as.numeric(ms_2023-meanms),as.numeric(al_2023-meanal),as.numeric(ar_2023-meanar),as.numeric(tn_2023-meantn),as.numeric(ok_2023-meanok),as.numeric(ga_2023-meanga),as.numeric(sc_2023-meansc),as.numeric(fl_2023-meanfl),as.numeric(la_2024-meanla),as.numeric(tx_2024-meantx),as.numeric(ms_2024-meanms),as.numeric(al_2024-meanal),as.numeric(ar_2024-meanar),as.numeric(tn_2024-meantn),as.numeric(ok_2024-meanok),as.numeric(ga_2024-meanga),as.numeric(sc_2024-meansc),as.numeric(fl_2024-meanfl)),year=c(rep(2022,10),rep(2023,10),rep(2024,10)))
 
