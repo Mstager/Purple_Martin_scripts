@@ -31,8 +31,8 @@ nrow(TX_nests[!is.na(TX_nests$laydate),])
 nrow(TX_nests[TX_nests$Male!="",])
 
 #nest success ~ laydate
-mod<-glm(Success~laydate, TX_nests, family="binomial")
-summary(mod)
+summary(glm(Success~laydate, TX_nests, family="binomial"))
+
 
 plot_df <- augment(mod, type.predict = "response")
 plot_df$Success <- as.integer(as.character(plot_df$Success))
@@ -226,6 +226,7 @@ length(which(LA_nests$laydate<80))
 length(which(LA_nests$laydate>212))
 LA_nests$laydate[LA_nests$laydate<80 | LA_nests$laydate > 212] <- NA
 nrow(LA_nests[!is.na(LA_nests$laydate),])
+nrow(LA_nests[LA_nests$Male!="",])
 
 #nest success ~ laydate
 m<-glm(Success~laydate, LA_nests, family="binomial")
