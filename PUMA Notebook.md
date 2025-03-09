@@ -1,6 +1,6 @@
 # Purple Martin (*Progne subis*) Population Genomic Study
 
-**Robert R Fitak**^1^; ^1^Department of Biology; Genomics and Bioinformatics Cluster, University of Central Florida
+**Robert R Fitak**; Department of Biology; Genomics and Bioinformatics Cluster, University of Central Florida
 
 ### Project Description
 
