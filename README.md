@@ -92,7 +92,7 @@
 
 10) *Nest* directory: \
 	10a) **Nest.R** \
-	R script for perfoming analyses of trends in nesting using data from Purple Martin Conservation Association Project MartinWatch.
+	R script for perfoming analyses of trends in nesting data; requires **PMW_Nestdata.csv**.
 
 	10b) **PMW_Nestdata.csv** \
 	Table of nesting data for the 10 focal states from the Purple Martin Conservation Association Project MartinWatch dataset.
