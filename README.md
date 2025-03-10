@@ -100,7 +100,7 @@
 ### Supplemental Tables
 11) *Supp_Tables* directory: \
     Data included in the supplemental materials in .csv format: \
-    	11a) **Table_S3.csv**: data for 292 carcasses
-    	11b) **Table_S4.csv**: list of 30 sampling sites
-    	11c) **Table_S5.csv**: data for live sampling performed in May 2021
-    	11d) **Table_S6.csv**: information for 66 individuals for which WGS was performed
+    	11a) **Table_S3.csv**: data for 292 carcasses \
+    	11b) **Table_S4.csv**: list of 30 sampling sites \
+    	11c) **Table_S5.csv**: data for live sampling performed in May 2021 \
+    	11d) **Table_S6.csv**: information for 66 individuals for which WGS was performed \
