@@ -72,3 +72,199 @@ ggplot(all_Feb[all_Feb$Year<2021,], aes(y=Arrival_anomaly, x=Anomaly_C))+
 	axis.ticks.x=element_line(colour="black"), 
 	axis.ticks.y=element_line(colour="black"), 
 	axis.line=element_line(size=1))
+
+##############################################################################
+setwd("/Users/Maria/Google_Drive/PUMA/Scripts/Scripts_from_Nate")
+
+library(lubridate)
+library(rptR)
+library(data.table)
+library(dplyr)
+library(lme4)
+library(lmerTest)
+
+#Texas data
+tx<-read.csv(file="TX_arrivals_edited.csv")
+tx<-tx[tx$AGE!="Subadult",]
+
+#generate yeardays
+tx$date <- as.Date(tx$DATE, format="%m/%d/%Y")
+tx$yday<-yday(tx$date)
+
+#concatenate NAME and CITY
+tx$site <- paste(tx$NAME, tx$CITY, sep="_")
+
+#convert to upper case
+tx$site<-toupper(tx$site)
+
+#Investigate Temporal Trends in arrival date
+tx_early<-tx[tx$yday<160,]
+tx_long_term<-tx_early %>% count(site)
+tx_long_term<-tx_long_term[tx_long_term$n>10,]
+tx_temporal<-merge(tx_early, tx_long_term, by="site")
+mod1<-lmer(yday~YEAR+(1|site), data=tx_temporal); summary(mod1)
+
+#repeatability of yday
+rpt(yday ~ (1|site), grname="site", data = tx, nboot=0, npermut=0, datatype = "Poisson")
+
+
+#repeatability of yday only at sites with repeated measures
+rpt(yday ~ (1|site), grname="site", data = tx_rpt, nboot=0, npermut=0, datatype = "Poisson")
+length(levels(as.factor(tx_rpt$site)))
+
+
+#yday statistics by site
+tx_site_mean<-aggregate(tx_rpt$yday, by=list(tx_rpt$site), na.rm=TRUE, mean)
+tx_site_min<-aggregate(tx_rpt$yday, by=list(tx_rpt$site), na.rm=TRUE, min)
+tx_site_max<-aggregate(tx_rpt$yday, by=list(tx_rpt$site), na.rm=TRUE, max)
+tx_stats<-merge(tx_site_mean, tx_site_min, by="Group.1")
+tx_st<-merge(tx_stats, tx_site_max, by="Group.1")
+names(tx_st)<-c("site", "mean", "min", "max")
+tx_rpts<-tx_st[tx_st$min<50,]
+tx_rpts$range<-(tx_rpts$max-tx_rpts$min)
+mean(tx_rpts$range)
+sd(tx_rpts$range)
+
+#storm estimates
+tx_s<-tx[tx$YEAR>2020 & tx$YEAR<2023,]
+tx_test2<-tx_s %>% count(site)
+tx_test2<-tx_test2[tx_test2$n>1,]
+tx_storm<-merge(tx_s, tx_test2, by="site")
+tx_storm$site[order(tx_storm$site)]
+tx_2021<-tx_storm[tx_storm$YEAR==2021,]
+tx_2022<-tx_storm[tx_storm$YEAR==2022,]
+tx_storms<-merge(tx_2021, tx_2022, by="site")
+tx_early<-tx_storms[tx_storms$yday.x<52,]
+length(levels(as.factor(tx_early$site)))
+tx_early$dif<-(tx_early$yday.y-tx_early$yday.x)
+tx_survivors<-tx_early[tx_early$dif<19,]
+length(levels(as.factor(tx_survivors$site)))
+
+
+#WEATHER DATA
+tx_feb<-weather[weather$Month=="2" & weather$State=="TX",]
+tx_mar<-weather[weather$Month=="3" & weather$State=="TX",]
+tx_apr<-weather[weather$Month=="4" & weather$State=="TX",]
+tx_may<-weather[weather$Month=="5" & weather$State=="TX",]
+tx_jun<-weather[weather$Month=="6" & weather$State=="TX",]
+
+#Weather Trend Analysis
+tx_late<-tx[tx$yday<160 & tx$YEAR<2021,]
+tx_test<-tx_late %>% count(site)
+tx_test<-tx_test[tx_test$n>1,]
+tx_rpt<-merge(tx_late, tx_test, by="site")
+tx_rpt$site[order(tx_rpt$site)]
+
+
+mod_tx_feb<-lm(Mean_C~Year, data=tx_feb); summary(mod_tx_feb)
+mod_tx_mar<-lm(Mean_C~Year, data=tx_mar); summary(mod_tx_mar)
+mod_tx_apr<-lm(Mean_C~Year, data=tx_apr); summary(mod_tx_apr)
+mod_tx_may<-lm(Mean_C~Year, data=tx_may); summary(mod_tx_may)
+mod_tx_jun<-lm(Mean_C~Year, data=tx_jun); summary(mod_tx_jun)
+
+ci95 <- predict(mod_tx_jun, tx_jun, interval = "confidence", level = 0.95)
+
+tx_jun <- cbind(tx_jun, ci95)
+
+#plot Fig 4c
+new<-merge(tx_temporal, tx_jun, by.x="YEAR", by.y="Year")
+
+ggplot(data=new, aes(y=yday, x=YEAR)) + 
+	geom_point(color="#ABB4E2")+
+	stat_smooth(method="glm", col=pal[1])+
+	geom_line(aes(y=upr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) + #upper limit of 95% CI
+	geom_line(aes(y=lwr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) +  #lower limit of 95% CI
+	geom_line(aes(y=fit*7, x=YEAR), lwd=2, col=pal[11]) + 
+	geom_point(aes(y=(Mean_C*7), x=YEAR)) +
+	labs(y="Arrival Date", x="Year") +
+	scale_x_continuous(breaks=c(2000,2005,2010,2015,2020))+
+	scale_y_continuous(limits = c(8, 175), sec.axis = sec_axis(~./7)) + 
+    theme(panel.background=element_rect(fill="white"), 
+  	legend.position = "none", 
+	plot.margin=unit(c(1,1,1,1),"cm"), 
+  	axis.text.x=element_text(size=14, colour="black"), 
+	axis.text.y=element_text(size=14, colour="black"), 
+	axis.title.x=element_text(size=22, colour="black", margin=margin(20,0,0,0)), 
+	axis.title.y=element_text(size=22, colour="black", margin=margin(0,10,0,0)), 
+	axis.line=element_line(size=1))
+
+
+#Louisiana Data
+la<-read.csv(file="LA_arrivals.csv")
+la<-la[la$AGE!="SubadultM" & la$AGE!="Subadult",]
+
+#generate yeardays
+la$date <- as.Date(la$DATE, format="%m/%d/%Y")
+la$yday<-yday(la$date)
+
+#concatenate NAME and CITY
+la$site <- paste(la$NAME, la$CITY, sep="_")
+
+#convert to upper case
+la$site<-toupper(la$site)
+
+#Investigate Temporal Trends in arrival date
+la_early<-la[la$yday<160,]
+la_long_term<-la_early %>% count(site)
+la_long_term<-la_long_term[la_long_term$n>10,]
+la_temporal<-merge(la_early, la_long_term, by="site")
+mod2<-lmer(yday~YEAR+(1|site), data=la_temporal); summary(mod2)
+
+#repeatability of yday
+rpt(yday ~ (1|site), grname="site", data = la, nboot=0, npermut=0, datatype = "Poisson")
+
+
+
+#identify repeated measures
+la_late<-la[la$yday<100 & la$YEAR<2021,]
+la_test<-la_late %>% count(site)
+la_test<-la_test[la_test$n>1,]
+la_rpt<-merge(la_late, la_test, by="site")
+la_rpt$site[order(la_rpt$site)]
+
+#repeatability of yday only at sites with repeated measures
+rpt(yday ~ (1|site), grname="site", data = la_rpt, nboot=0, npermut=0, datatype = "Poisson")
+length(levels(as.factor(la_rpt$site)))
+
+
+#yday statistics by site
+la_site_mean<-aggregate(la_rpt$yday, by=list(la_rpt$site), na.rm=TRUE, mean)
+la_site_min<-aggregate(la_rpt$yday, by=list(la_rpt$site), na.rm=TRUE, min)
+la_site_max<-aggregate(la_rpt$yday, by=list(la_rpt$site), na.rm=TRUE, max)
+la_stats<-merge(la_site_mean, la_site_min, by="Group.1")
+la_st<-merge(la_stats, la_site_max, by="Group.1")
+names(la_st)<-c("site", "mean", "min", "max")
+la_rpts<-la_st[la_st$min<38,]
+la_rpts$range<-(la_rpts$max-la_rpts$min)
+mean(la_rpts$range)
+sd(la_rpts$range)
+
+#storm estimates
+la_s<-la[la$YEAR>2020 & la$YEAR<2023,]
+la_test2<-la_s %>% count(site)
+la_test2<-la_test2[la_test2$n>1,]
+la_storm<-merge(la_s, la_test2, by="site")
+la_storm$site[order(la_storm$site)]
+la_2021<-la_storm[la_storm$YEAR==2021,]
+la_2022<-la_storm[la_storm$YEAR==2022,]
+la_storms<-merge(la_2021, la_2022, by="site")
+la_early<-la_storms[la_storms$yday.x<52,]
+length(levels(as.factor(la_early$site)))
+la_early$dif<-(la_early$yday.y-la_early$yday.x)
+la_survivors<-la_early[la_early$dif<24,]
+length(levels(as.factor(la_survivors$site)))
+
+#####Weather Data
+weather<-read.csv(file="weather (1).csv")
+la_feb<-weather[weather$Month=="2" & weather$State=="LA",]
+la_mar<-weather[weather$Month=="3" & weather$State=="LA",]
+la_apr<-weather[weather$Month=="4" & weather$State=="LA",]
+la_may<-weather[weather$Month=="5" & weather$State=="LA",]
+la_jun<-weather[weather$Month=="6" & weather$State=="LA",]
+
+#Weather Trend Analysis
+mod_la_feb<-lm(Mean_C~Year, data=la_feb); summary(mod_la_feb)
+mod_la_mar<-lm(Mean_C~Year, data=la_mar); summary(mod_la_mar)
+mod_la_apr<-lm(Mean_C~Year, data=la_apr); summary(mod_la_apr)
+mod_la_may<-lm(Mean_C~Year, data=la_may); summary(mod_la_may)
+mod_la_jun<-lm(Mean_C~Year, data=la_jun); summary(mod_la_jun)
