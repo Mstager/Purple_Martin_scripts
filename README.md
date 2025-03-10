@@ -78,8 +78,8 @@
 
 ### Morphological and body composition analyses
 
-8) **QMR.r** \
-    R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses.
+8) **Carcass.R** \
+    R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S5.csv**.
 
 ### Trends in arrival and nesting analyses
 
