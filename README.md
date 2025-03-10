@@ -67,7 +67,7 @@
 		Rscript to determine SNPs that significantly change across time points in Texas. 
 
 
-### Weather analyses
+### Weather, morphological, and body composition analyses
 
 7) *Weather* directory: \
    	7a) **Figure1a.R** \
@@ -76,34 +76,32 @@
 	7b) **Weather.R** \
    		R script for conducting weather anomaly analyses and generating Figures 1b; requires **Table_S4.csv**.
 
-### Morphological and body composition analyses
-
-8) **Carcass.R** \
-    R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S5.csv**.
+	7c) **Carcass.R** \
+    		R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S5.csv**.
 
 ### Trends in arrival and nesting analyses
 
-9) *Scout_arrivals* directory: \
-	9a) **XX_arrivals.csv** files \
+8) *Scout_arrivals* directory: \
+	8a) **XX_arrivals.csv** files \
 	Scout arrival data for each of the 10 focal states from 1998 through 2024 in .csv format (redacted, without observer names). Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
 	
-	9b) **Scout_arrival.R** \
+	8b) **Scout_arrival.R** \
 	R script to perform analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2.
 
-	9c) **Anomalous_arrival_analysis.R** \
+	8c) **Anomalous_arrival_analysis.R** \
 	R script to perform analyses relating arrival anomalies and weather anomalies, and to generate Figure 4a.
 
-11) *Nest* directory: \
-	10a) **Nest.R** \
+9) *Nests* directory: \
+	9a) **Nest.R** \
 	R script for perfoming analyses of trends in nesting data; requires **PMW_Nestdata.csv**.
 
-	10b) **PMW_Nestdata.csv** \
+   	9b) **PMW_Nestdata.csv** \
 	Table of nesting data for the 10 focal states from the Purple Martin Conservation Association Project MartinWatch dataset.
 
 ### Supplemental Tables
-11) *Supp_Tables* directory: \
+10) *Supp_Tables* directory: \
     Data included in the supplemental materials in .csv format: \
-    	11a) **Table_S3.csv**: data for 292 carcasses \
-    	11b) **Table_S4.csv**: list of 30 sampling sites \
-    	11c) **Table_S5.csv**: data for live sampling performed in May 2021 \
-    	11d) **Table_S6.csv**: information for 66 individuals for which WGS was performed \
+    	10a) **Table_S3.csv**: data for 292 carcasses \
+    	10b) **Table_S4.csv**: list of 30 sampling sites \
+    	10c) **Table_S5.csv**: data for live sampling performed in May 2021 \
+    	10d) **Table_S6.csv**: information for 66 individuals for which WGS was performed \
