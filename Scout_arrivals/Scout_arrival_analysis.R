@@ -118,11 +118,11 @@ ggplot(sadtx[-grep("^12/", sadtx$DATE),], aes(y = YEAR, x = as.Date(Month_Day, f
   	axis.text.y = element_text(size = 14),
   	axis.line=element_line(size=1))
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="TX")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="TX")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meantx, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"TX_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"TX_anomalous_arrivals.csv", row.names=FALSE)
 
 ################################
 
@@ -243,11 +243,11 @@ ggplot(sadla[-grep("^12/", sadla$DATE),], aes(y = YEAR, x = as.Date(Month_Day, f
   	axis.text.y = element_text(size = 14),
   	axis.line=element_line(size=1))
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="LA")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="LA")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanla, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"LA_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"LA_anomalous_arrivals.csv", row.names=FALSE)
 
 ###############################################
 
@@ -361,11 +361,11 @@ ggplot(sadms, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.title.x=element_text(margin=margin(20,0,0,0)),
   	axis.line=element_line(size=.5))
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="MS")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="MS")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanms, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"MS_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"MS_anomalous_arrivals.csv", row.names=FALSE)
 
 #####################################
 
@@ -480,11 +480,11 @@ ggplot(sadar, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.title.x=element_text(margin=margin(20,0,0,0)),
   	axis.line=element_line(size=.5))
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="AR")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="AR")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanar, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"AR_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"AR_anomalous_arrivals.csv", row.names=FALSE)
 
 ###################################################
 
@@ -597,11 +597,11 @@ ggplot(sadok, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.title.x=element_text(margin=margin(20,0,0,0)),
   	axis.line=element_line(size=.5))
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="OK")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="OK")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanok, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"OK_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"OK_anomalous_arrivals.csv", row.names=FALSE)
 
 ##################################################
 
@@ -714,11 +714,11 @@ ggplot(sadal, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.title.x=element_text(margin=margin(20,0,0,0)),
   	axis.line=element_line(size=.5))
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="AL")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="AL")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanal, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"AL_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"AL_anomalous_arrivals.csv", row.names=FALSE)
 
 ###################################################
 
@@ -832,11 +832,11 @@ ggplot(sadga, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.line=element_line(size=.5))
 
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="GA")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="GA")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanga, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"GA_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"GA_anomalous_arrivals.csv", row.names=FALSE)
 
 ##################################################
 
@@ -976,11 +976,11 @@ ggplot(sadfl[-grep("^12/", sadfl$DATE),], aes(x = YEAR, y = as.Date(Month_Day, f
   	axis.line=element_line(size=.5))
 
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="FL")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="FL")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meanfl, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"FL_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"FL_anomalous_arrivals.csv", row.names=FALSE)
 
 #####################################################
   
@@ -1095,11 +1095,11 @@ ggplot(sadsc, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.title.x=element_text(margin=margin(20,0,0,0)),
   	axis.line=element_line(size=.5))  
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="SC")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="SC")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meansc, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"SC_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"SC_anomalous_arrivals.csv", row.names=FALSE)
   
 ####################################################### 
  
@@ -1214,11 +1214,11 @@ ggplot(sadtn, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.line=element_line(size=.5))  
   	
 
-arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Anomaly=NA, State="TN")
+arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="TN")
 for (i in 1:27) {
 	arrival_anomaly$anomaly[i]<-as.POSIXlt(as.Date(meanls[[i]]), format = "%y%m%d")$yday-as.POSIXlt(meantn, format = "%y%m%d")$yday 
 }
-write.csv(arrival_anomaly,"TN_anomalous_arrivals.csv")
+write.csv(arrival_anomaly,"TN_anomalous_arrivals.csv", row.names=FALSE)
 
 ######################################################
 
