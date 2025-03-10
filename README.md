@@ -88,9 +88,12 @@
 	Scout arrival data for each of the 10 focal states from 1998 through 2024 in .csv format (redacted, without observer names). Data can also be obtained directly from https://www.purplemartin.org/research/8/scout-arrival-study/.
 	
 	9b) **Scout_arrival.R** \
-	R script for performing analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2.
+	R script to perform analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2.
 
-10) *Nest* directory: \
+	9c) **Anomalous_arrival_analysis.R** \
+	R script to perform analyses relating arrival anomalies and weather anomalies, and to generate Figure 4a.
+
+11) *Nest* directory: \
 	10a) **Nest.R** \
 	R script for perfoming analyses of trends in nesting data; requires **PMW_Nestdata.csv**.
 
