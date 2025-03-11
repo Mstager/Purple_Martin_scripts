@@ -71,13 +71,13 @@
 
 7) *Weather* directory: \
    	7a) **Figure1a.R** \
-  		R script for generating Figure 1a; requires list of sampling sites (**Table_S4.csv**) and scout arrival locations for the 2021 season up to Feb 20 (**2021_scout-arrival-data-pre-Feb20.csv**). 
+  		R script for generating Figure 1a; requires list of sampling sites (**Table_S5.csv**) and scout arrival locations for the 2021 season up to Feb 20 (**2021_scout-arrival-data-pre-Feb20.csv**). 
    
 	7b) **Weather.R** \
-   		R script for conducting weather anomaly analyses and generating Figures 1b; requires **Table_S4.csv**.
+   		R script for conducting weather anomaly analyses and generating Figures 1b; requires **Table_S5.csv**.
 
 	7c) **Carcass.R** \
-    		R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S5.csv**.
+    		R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S4.csv**.
 
 ### Trends in arrival and nesting analyses
 
@@ -102,6 +102,6 @@
 10) *Supp_Tables* directory: \
     Data included in the supplemental materials in .csv format: \
     	10a) **Table_S3.csv**: data for 292 carcasses \
-    	10b) **Table_S4.csv**: list of 30 sampling sites \
-    	10c) **Table_S5.csv**: data for live sampling performed in May 2021 \
+    	10b) **Table_S4.csv**: data for live sampling performed in May 2021 \
+    	10c) **Table_S5.csv**: list of 30 sampling sites \
     	10d) **Table_S6.csv**: information for 66 individuals for which WGS was performed \
