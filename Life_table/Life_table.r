@@ -123,4 +123,26 @@ for (j in 1:21) {
 LA_recovery$time[j]<-min(life.table.LA.storm$time[which(life.table.LA.storm$n_adults>=100 & life.table.LA.storm$time>2)])-1
 LA_recovery$mortality[j]<- adult_storm_mortality
 }
+LA_recovery$time[LA_recovery$time=="Inf"]<-NA
 
+recovery <- merge(TX_recovery, LA_recovery, by="mortality")
+names(recovery) <- c("mortality", "TX_time", "LA_time")
+
+library (ggplot2)
+ggplot(recovery, aes(y=TX_time, x=mortality))+ 
+	geom_point(size=3, col="#E66100")+
+	geom_point(aes(y=LA_time, x=mortality), size=3, col="#5D3A9B")+
+	xlab("Storm Decrement to Adult Survival (%)")+
+	ylab("Recovery Time (years)")+
+	ylim(0,50)+
+	scale_linetype_manual(values=c('solid','solid'))+
+	theme_minimal()+
+	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+	legend.position = "none", 
+	axis.text.x=element_text(size=14, colour="black"), 
+	axis.text.y=element_text(size=14, colour="black"), 
+	axis.title.x=element_text(size=22, colour="black", margin=margin(20,0,0,0)), 
+	axis.title.y=element_text(size=22, colour="black", margin=margin(0,20,0,0)), 
+	axis.ticks.x=element_line(colour="black"), 
+	axis.ticks.y=element_line(colour="black"), 
+	axis.line=element_line(size=1))
