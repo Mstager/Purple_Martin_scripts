@@ -93,7 +93,7 @@
 
 9) *Nests* directory: \
 	9a) **Nest.R** \
-	R script for perfoming analyses of trends in nesting data; requires **PMW_Nestdata.csv**.
+	R script for perfoming analyses of trends in nesting data and generating Figures 2d and 4b; requires **PMW_Nestdata.csv**.
 
    	9b) **PMW_Nestdata.csv** \
 	Table of nesting data for the 10 focal states from the Purple Martin Conservation Association Project MartinWatch dataset.
@@ -104,4 +104,4 @@
     	10a) **Table_S3.csv**: data for 292 carcasses \
     	10b) **Table_S4.csv**: data for live sampling performed in May 2021 \
     	10c) **Table_S5.csv**: list of 30 sampling sites \
-    	10d) **Table_S6.csv**: information for 66 individuals for which WGS was performed \
+    	10d) **Table_S6.csv**: information for 66 individuals for which WGS was performed
