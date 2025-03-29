@@ -74,8 +74,6 @@ ggplot(all_Feb[all_Feb$Year<2021,], aes(y=Arrival_anomaly, x=Anomaly_C))+
 	axis.line=element_line(size=1))
 
 ##############################################################################
-setwd("/Users/Maria/Google_Drive/PUMA/Scripts/Scripts_from_Nate")
-
 library(lubridate)
 library(rptR)
 library(data.table)
@@ -166,7 +164,7 @@ ci95 <- predict(mod_tx_jun, tx_jun, interval = "confidence", level = 0.95)
 
 tx_jun <- cbind(tx_jun, ci95)
 
-#plot Fig 4c
+#plot Figure 4c
 new<-merge(tx_temporal, tx_jun, by.x="YEAR", by.y="Year")
 
 ggplot(data=new, aes(y=yday, x=YEAR)) + 
