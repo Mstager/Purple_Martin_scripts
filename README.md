@@ -74,7 +74,7 @@
   		R script for generating Figure 1a; requires list of sampling sites (**Table_S5.csv**) and scout arrival locations for the 2021 season up to Feb 20 (**2021_scout-arrival-data-pre-Feb20.csv**). 
    
 	7b) **Weather.R** \
-   		R script for conducting weather anomaly analyses and generating Figures 1b; requires **Table_S5.csv**.
+   		R script for conducting weather anomaly analyses and generating Figure 1b; requires **Table_S5.csv**.
 
 	7c) **Carcass.R** \
     		R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S4.csv**.
