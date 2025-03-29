@@ -98,7 +98,7 @@ for (i in 1:timesteps) {
 LA_recovery <- data.frame(time=rep(NA,21), mortality=rep(NA,21))
 
 egg_success_LA_storm = 0.53
-timesteps=50
+timesteps=60
 life.table.LA.storm = data.frame(time = 0:timesteps, n_adults = NA, n_1styr = NA, n_fledge = NA, n_eggs = NA)
 life.table.LA.storm[1,] <- life.table.LA[1,]
 
@@ -123,18 +123,17 @@ for (j in 1:21) {
 LA_recovery$time[j]<-min(life.table.LA.storm$time[which(life.table.LA.storm$n_adults>=100 & life.table.LA.storm$time>2)])-1
 LA_recovery$mortality[j]<- adult_storm_mortality
 }
-LA_recovery$time[LA_recovery$time=="Inf"]<-NA
 
 recovery <- merge(TX_recovery, LA_recovery, by="mortality")
 names(recovery) <- c("mortality", "TX_time", "LA_time")
 
 library (ggplot2)
 ggplot(recovery, aes(y=TX_time, x=mortality))+ 
-	geom_point(size=3, col="#E66100")+
-	geom_point(aes(y=LA_time, x=mortality), size=3, col="#5D3A9B")+
+	geom_point(size=3, col="#E66100", alpha=0.7)+
+	geom_point(aes(y=LA_time, x=mortality), size=3, col="#5D3A9B", alpha=0.7)+
 	xlab("Storm Decrement to Adult Survival (%)")+
 	ylab("Recovery Time (years)")+
-	ylim(0,50)+
+	ylim(0,55)+
 	scale_linetype_manual(values=c('solid','solid'))+
 	theme_minimal()+
 	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
