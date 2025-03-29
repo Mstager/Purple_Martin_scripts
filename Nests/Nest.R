@@ -14,7 +14,10 @@ nests$Success <- 0
 nests$Success[nests$Fledge > 0] <- 1
 nests$Success<-as.factor(nests$Success)
 
+#Add egg success for life table analysis
+nests$egg_success<- nests$Fledge/nests$Eggs
 
+###########################################
 #TX nests
 TX_nests <- nests %>% filter(State=="TX")
 
@@ -31,7 +34,8 @@ nrow(TX_nests[!is.na(TX_nests$laydate),])
 nrow(TX_nests[TX_nests$Male!="",])
 
 #nest success ~ laydate
-summary(glm(Success~laydate, TX_nests, family="binomial"))
+mod<-glm(Success~laydate, TX_nests, family="binomial")
+summary(mod)
 
 
 plot_df <- augment(mod, type.predict = "response")
@@ -166,9 +170,15 @@ ggplot(TX_nests, aes(y = Year, x = laydate)) +
   	axis.line=element_line(size=1))
 
 
-
 #nest success ~ male age class using nests w/ males of known age
 summary(glm(Success~Male, TX_nests[TX_nests$Male!="",], family="binomial"))
+
+
+#egg success for life table
+TX_eggsuccess<-data.frame(TX_nests %>% group_by(Year) %>% summarize(mean(egg_success, na.rm=TRUE))) 
+names(TX_eggsuccess)=c("Year", "Egg_success")
+mean(TX_eggsuccess$Egg_success)
+
 
 #ratios of adults:subadults
 TX_nests_age<-TX_nests %>% count(Year, Male) 
@@ -334,6 +344,11 @@ ggplot(LA_nests, aes(y = Year, x = laydate)) +
 #nest success ~ male age class using nests w/ males of known age
 summary(glm(Success~Male, LA_nests[LA_nests$Male!="",], family="binomial"))
 
+
+#egg success for life table
+LA_eggsuccess<-data.frame(LA_nests %>% group_by(Year) %>% summarize(mean(egg_success, na.rm=TRUE))) 
+names(LA_eggsuccess)=c("Year", "Egg_success")
+mean(LA_eggsuccess$Egg_success)
 
 
 #ratios of adults:subadults
