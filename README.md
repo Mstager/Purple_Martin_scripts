@@ -89,7 +89,7 @@
 	R script to perform analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2.
 
 	8c) **Anomalous_arrival_analysis.R** \
-	R script to perform analyses relating arrival anomalies and weather anomalies, and to generate Figure 4a.
+	R script to perform analyses relating arrival anomalies and weather anomalies, and to generate Figures 4a and 4c.
 
 9) *Nests* directory: \
 	9a) **Nest.R** \
