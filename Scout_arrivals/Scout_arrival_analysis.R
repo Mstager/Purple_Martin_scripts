@@ -97,6 +97,8 @@ min_arrival_tx[25]
 
 #plot the data 
 #3 Dec dates (2002 and 2009) need to be plotted separately
+#grid::current.viewport() #sometimes this call seems to be necessary to initalize a plot to prevent a depth error being thrown
+
 ggplot(sadtx[-grep("^12/", sadtx$DATE),], aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
   geom_rect(xmin = meantx-(2*sdtx), xmax = meantx+(2*sdtx), ymin = 1997, ymax = 2025, fill = "gray 91") + 
   geom_point(col="dark gray") + 
