@@ -13,7 +13,6 @@ clutch_1styr = 4.11
 
 #egg success (probability of egg surviving to chick fledging) 
 egg_success = 0.71 #average for TX and for LA from PMCA data across all years
-max_egg_success = 0.82 #maximum for TX from PMCA data across all years
 egg_success_TX_storm = 0.67 #average egg success in 2021 for TX
 egg_success_LA_storm = 0.53 #average egg success in 2021 for LA
 
