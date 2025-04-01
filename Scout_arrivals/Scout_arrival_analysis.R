@@ -104,9 +104,9 @@ ggplot(sadtx[-grep("^12/", sadtx$DATE),], aes(y = YEAR, x = as.Date(Month_Day, f
   geom_point(col="dark gray") + 
   geom_point(data=sadtx[grep("^12/", sadtx$DATE),], aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d")-366), col="gray") + #Dec dates
   geom_vline(xintercept=meantx, col="black")+ 
-  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 4)+
-  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 3, shape=3)+
-  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 3, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
   scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
   ylim(1998,2024)+
    labs(y = "Year", x = "Date") +
@@ -353,9 +353,12 @@ ggplot(sadms, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
+
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="MS")
 for (i in 1:27) {
@@ -469,9 +472,11 @@ ggplot(sadar, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
 
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="AR")
@@ -584,9 +589,12 @@ ggplot(sadok, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
+
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="OK")
 for (i in 1:27) {
@@ -698,9 +706,12 @@ ggplot(sadal, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
+
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="AL")
 for (i in 1:27) {
@@ -812,9 +823,11 @@ ggplot(sadga, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
 
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="GA")
@@ -953,9 +966,11 @@ ggplot(sadfl[-grep("^12/", sadfl$DATE),], aes(y = YEAR, x = as.Date(Month_Day, f
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
 
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="FL")
@@ -1070,9 +1085,11 @@ ggplot(sadsc, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))  
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
 
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="SC")
@@ -1183,13 +1200,15 @@ ggplot(sadtn, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
   ylim(1998,2024) +
   labs(y = "Year", x = "Date") +
   ggtitle("TN Scout Arrival Dates") +
-    theme(legend.position="none",
+   theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
-  	axis.title.y=element_text(margin=margin(0,20,0,0)), 
-  	axis.title.x=element_text(margin=margin(20,0,0,0)),
-  	axis.line=element_line(size=.5))  
-  	
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
+
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="TN")
 for (i in 1:27) {
