@@ -229,9 +229,6 @@ ggplot(sadla[-grep("^12/", sadla$DATE),], aes(y = YEAR, x = as.Date(Month_Day, f
   geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
   geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
   geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(y=2022, x = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "#CC1C2F", size = 3)+
-  geom_point(aes(y=2022, x = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "#CC1C2F", size = 2, shape=3)+
-  geom_point(aes(y=2022, x = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "#CC1C2F", size = 2, shape=3)+
   scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
   ylim(1998,2024)+
   labs(y = "Year", x = "Date") +
@@ -341,20 +338,17 @@ mean(min_arrival_ms[1:24]) #mean min arrival from 1998-2021
 min_arrival_ms[25]
 
 
-#plot the data
-ggplot(sadms, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meanms-(2*sdms), ymax = meanms+(2*sdms), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadms, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meanms-(2*sdms), xmax = meanms+(2*sdms), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_hline(yintercept=meanms, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  xlim(1998,2024)+
-  labs(x = "Year", y = "Date") +
+  geom_vline(xintercept=meanms, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  ylim(1998,2024)+
+  labs(y = "Year", x = "Date") +
   ggtitle("MS Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
@@ -460,20 +454,17 @@ for (i in levels(as.factor(sadar$YEAR))) {
 mean(min_arrival_ar[1:24]) #mean min arrival from 1998-2021
 min_arrival_ar[25]
 
-#plot the data
-ggplot(sadar, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meanar-(2*sdar), ymax = meanar+(2*sdar), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadar, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meanar-(2*sdar), xmax = meanar+(2*sdar), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_hline(yintercept=meanar, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  xlim(1998,2024)+
-  labs(x = "Year", y = "Date") +
+  geom_vline(xintercept=meanar, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  ylim(1998,2024)+
+  labs(y = "Year", x = "Date") +
   ggtitle("AR Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
@@ -481,6 +472,7 @@ ggplot(sadar, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.title.y=element_text(margin=margin(0,20,0,0)), 
   	axis.title.x=element_text(margin=margin(20,0,0,0)),
   	axis.line=element_line(size=.5))
+
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="AR")
 for (i in 1:27) {
@@ -577,20 +569,17 @@ for (i in levels(as.factor(sadok$YEAR))) {
 mean(min_arrival_ok[1:24]) #mean min arrival from 1998-2021
 min_arrival_ok[25]
 
-#plot the data
-ggplot(sadok, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meanok-(2*sdok), ymax = meanok+(2*sdok), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadok, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meanok-(2*sdok), xmax = meanok+(2*sdok), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_hline(yintercept=meanok, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  xlim(1998,2024)+
-  labs(x = "Year", y = "Date") +
+  geom_vline(xintercept=meanok, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  ylim(1998,2024)+
+  labs(y = "Year", x = "Date") +
   ggtitle("OK Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
@@ -695,19 +684,16 @@ mean(min_arrival_al[1:24]) #mean min arrival from 1998-2021
 min_arrival_al[25]
 
 
-#plot the data
-ggplot(sadal, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meanal-(2*sdal), ymax = meanal+(2*sdal), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadal, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meanal-(2*sdal), xmax = meanal+(2*sdal), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_hline(yintercept=meanal, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  labs(x = "Year", y = "Date") +
+  geom_vline(xintercept=meanal, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  labs(y = "Year", x = "Date") +
   ggtitle("AL Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
@@ -812,19 +798,16 @@ for (i in levels(as.factor(sadga$YEAR))) {
 mean(min_arrival_ga[1:24]) #mean min arrival from 1998-2021
 min_arrival_ga[25]
 
-#plot the data
-ggplot(sadga, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meanga-(2*sdga), ymax = meanga+(2*sdga), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadga, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meanga-(2*sdga), xmax = meanga+(2*sdga), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_hline(yintercept=meanga, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  labs(x = "Year", y = "Date") +
+  geom_vline(xintercept=meanga, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  labs(y = "Year", x = "Date") +
   ggtitle("GA Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
@@ -954,21 +937,18 @@ min_arrival_fl[27] <- -15 #2023 min arrival is Dec 17, 2023
 
 mean(min_arrival_fl[1:24]) #mean min arrival from 1998-2021
 
-#plot the data
-ggplot(sadfl[-grep("^12/", sadfl$DATE),], aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meanfl-(2*sdfl), ymax = meanfl+(2*sdfl), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadfl[-grep("^12/", sadfl$DATE),], aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meanfl-(2*sdfl), xmax = meanfl+(2*sdfl), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_point(data=sadfl[grep("^12/", sadfl$DATE),], aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d")-366), col="gray") + #Dec dates
-  geom_hline(yintercept=meanfl, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  xlim(1998,2024) +
-  labs(x = "Year", y = "Date") +
+  geom_point(data=sadfl[grep("^12/", sadfl$DATE),], aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d")-366), col="gray") + #Dec dates
+  geom_vline(xintercept=meanfl, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  ylim(1998,2024) +
+  labs(y = "Year", x = "Date") +
   ggtitle("FL Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
@@ -1075,20 +1055,17 @@ for (i in levels(as.factor(sadsc$YEAR))) {
 mean(min_arrival_sc[1:24]) #mean min arrival from 1998-2021
 min_arrival_sc[25]
 
-#plot the data
-ggplot(sadsc, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meansc-(2*sdsc), ymax = meansc+(2*sdsc), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadsc, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meansc-(2*sdsc), xmax = meansc+(2*sdsc), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_hline(yintercept=meansc, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  xlim(1998,2024) +
-  labs(x = "Year", y = "Date") +
+  geom_vline(xintercept=meansc, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  ylim(1998,2024) +
+  labs(y = "Year", x = "Date") +
   ggtitle("SC Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
@@ -1096,6 +1073,7 @@ ggplot(sadsc, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
   	axis.title.y=element_text(margin=margin(0,20,0,0)), 
   	axis.title.x=element_text(margin=margin(20,0,0,0)),
   	axis.line=element_line(size=.5))  
+
 
 arrival_anomaly<-data.frame(Year = rev(c(1998:2024)), Arrival_anomaly=NA, State="SC")
 for (i in 1:27) {
@@ -1193,20 +1171,17 @@ for (i in levels(as.factor(sadtn$YEAR))) {
 mean(min_arrival_tn[1:24]) #mean min arrival from 1998-2021
 min_arrival_tn[25]
 
-#plot the data
-ggplot(sadtn, aes(x = YEAR, y = as.Date(Month_Day, format = "%m-%d"))) +
-  geom_rect(ymin = meantn-(2*sdtn), ymax = meantn+(2*sdtn), xmin = 1996, xmax = 2026, fill = "gray91") + 
+#plot the data vertically
+ggplot(sadtn, aes(y = YEAR, x = as.Date(Month_Day, format = "%m-%d"))) +
+  geom_rect(xmin = meantn-(2*sdtn), xmax = meantn+(2*sdtn), ymin = 1996, ymax = 2026, fill = "gray91") + 
   geom_point(col="dark gray") + 
-  geom_hline(yintercept=meantn, col="black")+ 
-  geom_point(aes(x=YEAR, y = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=YEAR, y = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", meanls[3]), format="%m-%d")), color = "red", size = 3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q1ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  geom_point(aes(x=2022, y = as.Date(sub("2022-", "", q3ls[3]), format="%m-%d")), color = "red", size = 2, shape=3)+
-  scale_y_date(date_labels = "%m-%d", date_breaks = "5 days") +
-  xlim(1998,2024) +
-  labs(x = "Year", y = "Date") +
+  geom_vline(xintercept=meantn, col="black")+ 
+  geom_point(aes(y=YEAR, x = as.Date(Mean_md, format = "%m-%d")), color = "black", size = 3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q1_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  geom_point(aes(y=YEAR, x = as.Date(Q3_md, format = "%m-%d")), color = "black", size = 2, shape=3)+
+  scale_x_date(date_labels = "%m-%d", date_breaks = "20 days") +
+  ylim(1998,2024) +
+  labs(y = "Year", x = "Date") +
   ggtitle("TN Scout Arrival Dates") +
     theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
