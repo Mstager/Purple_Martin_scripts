@@ -188,7 +188,7 @@ ggplot(data=new, aes(y=yday, x=YEAR)) +
 
 
 #Louisiana Data
-la<-read.csv(file="LA_arrivals.csv")
+la<-read.csv(file="LA_arrivals_edited.csv")
 la<-la[la$AGE!="SubadultM" & la$AGE!="Subadult",]
 
 #generate yeardays
@@ -253,7 +253,6 @@ la_survivors<-la_early[la_early$dif<24,]
 length(levels(as.factor(la_survivors$site)))
 
 #####Weather Data
-weather<-read.csv(file="weather (1).csv")
 la_feb<-weather[weather$Month=="2" & weather$State=="LA",]
 la_mar<-weather[weather$Month=="3" & weather$State=="LA",]
 la_apr<-weather[weather$Month=="4" & weather$State=="LA",]
