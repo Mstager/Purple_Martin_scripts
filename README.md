@@ -80,7 +80,7 @@
     		R script for conducting morphological analyses and generating Figures 1d and S3 using quantititave magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S4.csv**.
 
    	7d) **2021_scout-arrival-data-pre_Feb20.csv** \
-   		Scout arrival data for Texas and Louisiana before February 20, 2021.
+   		Scout arrival data for the 2021 breeding season (across all U.S. states) pruned to include only dates before February 20, 2021. Used to plot Figure1a.
 
 ### Trends in arrival and nesting analyses
 
