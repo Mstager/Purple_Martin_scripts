@@ -1,4 +1,5 @@
 #life table for PUMA
+install.packages("ggplot2") #if not already installed
 library (ggplot2)
 
 
