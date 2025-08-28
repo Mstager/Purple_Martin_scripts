@@ -1,5 +1,7 @@
 #PMCA Nest data
 
+install.packages(c("dplyr","lubridate","broom","ggplot2")) #if not already installed
+
 library(dplyr)
 library(lubridate)
 library(broom)
