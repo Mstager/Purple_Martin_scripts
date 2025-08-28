@@ -1,5 +1,6 @@
 #R script to generate Figure 4a and associated analysis regarding anomalous arrivals
 
+install.packages(c("climwin","lme4","MuMIn","nlme","MASS","ggplot2","RColorBrewer")) #if not already installed
 library(climwin)
 library(lme4)
 library(MuMIn)
@@ -47,8 +48,8 @@ all_Feb<-merge(Feb, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "St
 
 #Arrival ~ temp anomaly during winter months; state not significant as random effect
 mod1<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Feb); summary(mod1); AIC(mod1)
-mod3<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021, data=all_Jan); summary(mod3); AIC(mod3)
-mod4<-lm(Arrival_anomaly~1, subset=Year<2021, data=all_Jan); summary(mod4); AIC(mod4)
+mod2<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021, data=all_Jan); summary(mod2); AIC(mod2)
+mod_null<-lm(Arrival_anomaly~1, subset=Year<2021, data=all_Jan); summary(mod_null); AIC(mod_null)
 
 #Model accounting for temporal autocorrelation; don't see any evidence 
 mod5<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State),  subset=Year<2021, data=all_Feb); summary(mod5); AIC(mod5)
