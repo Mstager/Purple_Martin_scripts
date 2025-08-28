@@ -1,7 +1,7 @@
 #Analyses of weather during the 2021 winter storm event
 
-#sampling sites
-sites <- read.csv("Table_S4.csv")
+#read table of sampling sites, included in /Supp_Tables
+sites <- read.csv("Table_S5.csv")
 
 #downloading 25 years of data (1995 to 2020) for each unique site and storing in location25ls
 install.packages(daymetr)
