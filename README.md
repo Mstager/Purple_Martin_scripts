@@ -96,19 +96,24 @@
 
 9) *Nests* directory: \
 	9a) **Nest.R** \
-	R script for perfoming analyses of trends in nesting data and generating Figures 2d and 4b; requires **PMW_Nestdata.csv**.
+	R script for perfoming analyses of trends in nesting data and generating Figures 2d and 4c; requires **PMW_Nestdata.csv**.
 
    	9b) **PMW_Nestdata.csv** \
 	Table of nesting data for the 10 focal states from the Purple Martin Conservation Association Project MartinWatch dataset.
 
+### Life table analysis
+10) *Life_table* directory: \
+    10a) **Life_table.r** \
+	R script for perfoming life table analysis and generating Figure 4b.
+
 ### Supplemental Tables
-10) *Supp_Tables* directory: \
+11) *Supp_Tables* directory: \
     Data included in the supplemental materials in .csv format: \
-    	10a) **Table_S3.csv**: \
+    	11a) **Table_S3.csv**: \
     	Individual data for 292 carcasses, including LSU MNS tissue number, collection date, location, latitude, and longitude, sex (determined by plumage), morphological measurements, and body composition (fat and lean masses). \
-    	10b) **Table_S4.csv**: \
+    	11b) **Table_S4.csv**: \
     	Origin and morphological data for individuals sampled in May 2021. Latitudes and longitudes have been rounded to the nearest hundredth to maintain homeowner privacy. Sex (male [M] or female [F]) and age (subadult [SY] or adult [ASY]) were determined by plumage. \
-    	10c) **Table_S5.csv**: \
+    	11c) **Table_S5.csv**: \
     	Localities for 30 sampling sites of purple martin carcasses. Latitudes and longitudes have been rounded to the nearest hundredth to maintain privacy of homeowners. \
-    	10d) **Table_S6.csv**: \
+    	11d) **Table_S6.csv**: \
     	Individual information for 66 samples for which whole-genome sequencing was performed. Collection date and collection locale with corresponding latitudes and longitudes (rounded to the nearest hundredth to maintain homeowner privacy) are listed. Cohort (survivor or victim), age (ASY = adult [after second year]; SY = subadult [second year]) and sex (M = male; F = female) are indicated. BioSample Accession number corresponds to raw sequence archived on NCBI’s Sequence Read Archive.
