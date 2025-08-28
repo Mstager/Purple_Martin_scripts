@@ -8,12 +8,7 @@
 
 options(scipen=999)
 
-install.packages("ncdf4")
-install.packages("here")
-install.packages("tidyverse")
-install.packages("terra")
-install.packages("sf") 
-install.packages("devtools")
+install.packages(c("ncdf4","here","tidyverse","terra","sf","devtools"))
 
 source_url("https://github.com/SamMajumder/GeoVizHub/blob/main/TempDiffUS/Code/Functions.R") #alternatively, code for these functions can be copied into R at the url provided
 
