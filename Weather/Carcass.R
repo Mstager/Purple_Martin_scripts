@@ -18,7 +18,15 @@ banding <-banding  %>% separate(Coordinates, sep=",", into=c("Latitude","Longitu
 #select only sites with banding data
 puma_subset<-puma_df[puma_df$Location=="Fate, TX" | puma_df$Location=="Natalia, TX" | puma_df$Location=="Gonzalez, TX" | puma_df$Location=="Liberty, TX" | puma_df$Location=="South Lake, TX" | puma_df$Location=="Trinidad, TX" | puma_df$Location=="San Antonio, TX" | puma_df$Location=="Austin, TX" | puma_df$Location=="Giddings, TX" | puma_df$Location=="New Braunfels, TX",]
 
-t.test(band_subset$Wing.Chord..mm., puma_subset$Wing..mm.)
+#test for normality
+shapiro.test(banding$Wing.Chord..mm.)
+shapiro.test(puma_subset$Wing.Chord..mm.)
+
+#test for equal variance
+var.test(banding$Wing.Chord..mm., puma_subset$Wing.Chord..mm., alternative="two.sided")
+
+#t-test assumptions are met
+t.test(banding$Wing.Chord..mm., puma_subset$Wing.Chord..mm.)
 
 mean(as.numeric(band_subset$Bird.Mass..g.), na.rm=TRUE)
 mean(puma_subset$Mass); sd(puma_subset$Mass)
