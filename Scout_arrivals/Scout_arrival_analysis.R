@@ -1,7 +1,7 @@
 ###Script for conducting analyses related to martin first arrivals over time
 
 #Purple Martin Scout Arrival Data can be found at: https://www.purplemartin.org/research/8/scout-arrival-study/
-
+install.packages("lubridate")
 library(lubridate)
 
 #read in scout arrivals by state
