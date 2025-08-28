@@ -2,6 +2,7 @@
 
 #Purple Martin Scout Arrival Data can be found at: https://www.purplemartin.org/research/8/scout-arrival-study/
 install.packages(c("lubridate","ggplot2")) #if not already installed
+
 library(lubridate)
 library(ggplot2)
 
