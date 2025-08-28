@@ -8,11 +8,14 @@
 
 options(scipen=999)
 
-packages <- list("ncdf4","here","tidyverse","terra","sf", "devtools")
+install.packages("ncdf4")
+install.packages("here")
+install.packages("tidyverse")
+install.packages("terra")
+install.packages("sf") 
+install.packages("devtools")
 
-lapply(packages, require,character.only = T) 
-
-source_url("https://github.com/SamMajumder/GeoVizHub/blob/main/TempDiffUS/Code/Functions.R")
+source_url("https://github.com/SamMajumder/GeoVizHub/blob/main/TempDiffUS/Code/Functions.R") #alternatively, code for these functions can be copied into R at the url provided
 
 # List of directories to create
 dirs_to_create <- c("RawDatasets","ProcessedDatasets2021")
