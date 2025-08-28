@@ -1,5 +1,7 @@
 #Analyses on PUMA carcass morphometrics and body composition
 
+install.packages(c("tidyr","dplyr","ggplot2")) #if not already installed
+
 library(tidyr)
 library(dplyr)
 library(ggplot2)
@@ -7,7 +9,7 @@ library(ggplot2)
 puma_df <- read.csv("Table_S3.csv")
 
 #PUMA May 2021 banding data
-banding<-read.csv("Table_S5.csv")
+banding<-read.csv("Table_S4.csv")
 
 #split coordinates column
 banding <-banding  %>% separate(Coordinates, sep=",", into=c("Latitude","Longitude"), convert=TRUE)
