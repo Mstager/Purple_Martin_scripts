@@ -195,7 +195,15 @@ sd(TX_nests_subadults$prop_adult[1:23])
 
 
 #laydate differences among subadults and adults
-t.test(laydate~Male, TX_nests[TX_nests$Male!="",])
+#Sample size exceeds allowable size for Shapiro Wilk test for normality
+hist(TX_nests$laydate[TX_nests$Male!="ASY"])
+hist(TX_nests$laydate[TX_nests$Male!="SY"])
+
+#test for equal variance
+var.test(laydate~Male, TX_nests[TX_nests$Male!="",], alternative="two.sided")
+
+#t-test assumptions are met
+t.test(laydate~Male, TX_nests[TX_nests$Male!="",], var.equal=FALSE)
 
 
 #Comparing 2021 and 2022 age ratios
@@ -365,7 +373,15 @@ sd(LA_nests_subadults$prop[1:19])
 
 
 #laydate differences among subadults and adults
-t.test(laydate~Male, LA_nests[LA_nests$Male!="",]) 
+#test for normality
+shapiro.test(LA_nests$laydate[LA_nests$Male!="SY"])
+shapiro.test(LA_nests$laydate[LA_nests$Male!="ASY"])
+
+#test for equal variance
+var.test(laydate~Male, LA_nests[LA_nests$Male!="",], alternative="two.sided")
+
+#test for differences among the age classes
+wilcox.test(laydate~Male, LA_nests[LA_nests$Male!="",]) 
 
 
 #Comparing 2021 and 2022 age ratios
