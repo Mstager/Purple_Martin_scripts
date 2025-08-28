@@ -26,18 +26,36 @@ shapiro.test(puma_subset$Wing.Chord..mm.)
 var.test(banding$Wing.Chord..mm., puma_subset$Wing.Chord..mm., alternative="two.sided")
 
 #t-test assumptions are met
-t.test(banding$Wing.Chord..mm., puma_subset$Wing.Chord..mm.)
+t.test(banding$Wing.Chord..mm., puma_subset$Wing.Chord..mm., var.equal=TRUE)
 
-mean(as.numeric(band_subset$Bird.Mass..g.), na.rm=TRUE)
+mean(as.numeric(banding$Bird.Mass..g.), na.rm=TRUE)
 mean(puma_subset$Mass); sd(puma_subset$Mass)
 
 
 #Calculate proportional fat and lean mass
-puma_subset$Prop.Fat<- puma_subset$FatMass..g./puma_subset$Mass..g.     
+puma_subset$Prop.Fat<- puma_subset$Fat.Mass..g./puma_subset$Mass..g.     
 puma_subset$Prop.Lean<-puma_subset$Lean.Mass..g./puma_subset$Mass..g.     
 
 mean(puma_subset$Prop.Fat, na.rm=TRUE)
 mean(puma_subset$Prop.Lean, na.rm=TRUE)
+
+#compare proportional lean mass among sexes
+#test for normality fails
+shapiro.test(puma_subset$Prop.Lean[puma_subset$Sex=="M"])
+shapiro.test(puma_subset$Prop.Lean[puma_subset$Sex=="F"])
+
+#Mann-Whitney test
+wilcox.test(Prop.Lean~Sex, puma_subset, alternative="two.sided")
+
+#compare proportional fat mass among sexes
+#test for normality fails
+shapiro.test(puma_subset$Prop.Fat[puma_subset$Sex=="M"])
+shapiro.test(puma_subset$Prop.Fat[puma_subset$Sex=="F"])
+
+#Mann-Whitney test
+wilcox.test(Prop.Fat~Sex, puma_subset, alternative="two.sided")
+
+
 
 #Plot Figure 1d
 ggplot(puma_subset, aes(Prop.Fat))+ geom_histogram(color="black", fill="grey", bins=20) + geom_vline(xintercept=mean(puma_subset$Prop.Fat, na.rm=TRUE), linetype=2) + xlab("Fat Mass (proportion of body mass)") + theme_classic()
