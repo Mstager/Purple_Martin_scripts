@@ -1,8 +1,9 @@
 ###Script for conducting analyses related to martin first arrivals over time
 
 #Purple Martin Scout Arrival Data can be found at: https://www.purplemartin.org/research/8/scout-arrival-study/
-install.packages("lubridate")
+install.packages(c("lubridate","ggplot2") #if not already installed
 library(lubridate)
+library(ggplot2)
 
 #read in scout arrivals by state
 
