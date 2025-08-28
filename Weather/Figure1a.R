@@ -8,7 +8,7 @@
 
 options(scipen=999)
 
-install.packages(c("ncdf4","here","tidyverse","terra","sf"))
+install.packages(c("ncdf4","here","tidyverse","terra","sf")) #if not already installed
 
 packages <- list("ncdf4","here","tidyverse","terra","sf")
 
