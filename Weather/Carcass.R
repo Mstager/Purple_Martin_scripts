@@ -6,10 +6,10 @@ library(tidyr)
 library(dplyr)
 library(ggplot2)
 
-puma_df <- read.csv("/Supp_Tables/Table_S3.csv")
+puma_df <- read.csv("Supp_Tables/Table_S3.csv")
 
 #PUMA May 2021 banding data
-banding<-read.csv("/Supp_Tables/Table_S4.csv")
+banding<-read.csv("Supp_Tables/Table_S4.csv")
 
 #split coordinates column
 banding <-banding  %>% separate(Coordinates, sep=",", into=c("Latitude","Longitude"), convert=TRUE)
