@@ -4,7 +4,7 @@
 sites <- read.csv("Table_S5.csv")
 
 #downloading 25 years of data (1995 to 2020) for each unique site and storing in location25ls
-install.packages(daymetr)
+install.packages(daymetr) #if not already installed
 library(daymetr)
 location25ls <- list()
 for(i in 1:nrow(sites)){
