@@ -5,12 +5,12 @@ library (ggplot2)
 
 #annual survival rates from Brown, C. R., D. A. Airola, and S. Tarof (2021). Purple Martin (Progne subis), version 2.0. In Birds of the World (P. G. Rodewald, Editor). Cornell Lab of Ornithology, Ithaca, NY, USA. https://doi-org.silk.library.umass.edu/10.2173/bow.purmar.02
 surv_adult = 0.63 #annual survival of adults age 2-5 years
-surv_1styr = 0.48 #annual survival of adults age 1
+surv_subadult = 0.48 #annual survival of adults age 1 (subadults)
 surv_fledge = 0.27 #annual survival of fledglings to first year
 
 #clutch sizes in N. Texas from Brown, C. R. (1978c). Clutch size and reproductive success of adult and subadult Purple Martins. Southwestern Naturalist 23: 597–604.
 clutch_adult = 4.97
-clutch_1styr = 4.11
+clutch_subadult = 4.11
 
 #egg success (probability of egg surviving to chick fledging) 
 egg_success = 0.71 #average for TX and for LA from PMCA data across all years
@@ -20,30 +20,43 @@ egg_success_LA_storm = 0.53 #average egg success in 2021 for LA
 
 #to maintain a stable population given average adult survival
 timesteps = 100
-life.table = data.frame(time = 0:timesteps, n_adults = NA, n_1styr = NA, n_fledge = NA, n_eggs = NA)
-life.table$n_adults[1] <- 100
+life.table = data.frame(time = 0:timesteps, n_adults = NA, n_subadults = NA, n_fledge = NA, n_eggs = NA) #initiate an empty table for output
+life.table$n_adults[1] <- 100 #starting adult population size
 
 for (i in 0:timesteps) {
-	n_adults = life.table$n_adults[life.table$time==i]
-	n_adult_replacements = n_adults - (n_adults * surv_adult) #number of 1st yrs needed to replace annual attrition in adults
-	n_1styr = n_adult_replacements / surv_1styr #number of 1st yrs needed to reach adult replacement given annual survival
-	n_fledge = n_1styr / surv_fledge #number of fledgies needed to replace 1st yrs annually
-	n_eggs = ((n_adults/2)* clutch_adult) + ((n_1styr/2)* clutch_1styr) #number of eggs produced given the # of adults and 1st years and their respective clutch sizes
-	life.table[life.table$time==i,] <- c(i, n_adults, n_1styr, n_fledge, n_eggs)
-	life.table$n_adults[life.table$time==i+1] <- (life.table$n_adults[life.table$time==i]* surv_adult) + (life.table$n_1styr[life.table$time==i]* surv_1styr)
+	#number of adults at time t=i:
+		n_adults = life.table$n_adults[life.table$time==i] 
+	#annual attrition in adults is equal to number of adults at time t=i minus the number of adults that survive, given annual survival rate:
+		n_adult_deaths = n_adults - (n_adults * surv_adult) 
+	#number of subadults needed to compensate for adult mortality given annual survival of subadults:
+		n_subadults = n_adult_deaths / surv_subadult 
+	#number of fledglings needed to compensate for subadult mortality given annual survival of fledglings:
+		n_fledge = n_subadults / surv_fledge 
+	#number of eggs produced given the # of adult and subadult pairs and their respective clutch sizes:
+		n_eggs = ((n_adults/2)* clutch_adult) + ((n_subadults/2)* clutch_subadult) 
+	#number of individuals in each age class at time t=i:
+		life.table[life.table$time==i,] <- c(i, n_adults, n_subadults, n_fledge, n_eggs)
+	#number of adults at time t=i+1 is equal to number of adults at time t=i x survival of adults plus number of subadults at t=i x survival of subadults:
+		life.table$n_adults[life.table$time==i+1] <- (life.table$n_adults[life.table$time==i]* surv_adult) + (life.table$n_subadults[life.table$time==i]* surv_subadult)
 }
+
+life.table #this just demonstrates the number of individuals required in each age class to maintain a stable population over time
 
 ####################################################################################################
 
-#to maintain a stable/growing population in TX
-life.table.TX = data.frame(time = 0:timesteps, n_adults = NA, n_1styr = NA, n_fledge = NA, n_eggs = NA)
-life.table.TX[1,] <- life.table[1,]
+#to maintain a stable/growing population in TX, incorporating avereage egg success
+life.table.TX = data.frame(time = 0:timesteps, n_adults = NA, n_subadults = NA, n_fledge = NA, n_eggs = NA) #initiate an empty table for output
+life.table.TX[1,] <- life.table[1,] #now time t=1 is equal to the values needed to maintain a stable population as they were just calculated
 
 for (i in 1:timesteps) {
-	life.table.TX$n_adults[life.table.TX$time==i] = (life.table.TX$n_adults[life.table.TX$time==i-1]* surv_adult) + (life.table.TX$n_1styr[life.table.TX$time==i-1]* surv_1styr)
-	life.table.TX$n_1styr[life.table.TX$time==i] = life.table.TX$n_fledge[life.table.TX$time==i-1]* surv_fledge
-	life.table.TX$n_eggs[life.table.TX$time==i] = ((life.table.TX$n_adults[life.table.TX$time==i]/2)* clutch_adult) + ((life.table.TX$n_1styr[life.table.TX$time==i]/2)* clutch_1styr) #number of eggs produced given the # of adults and 1st years and their respective clutch sizes
-	life.table.TX$n_fledge[life.table.TX$time==i] = life.table.TX$n_eggs[life.table.TX$time==i]* egg_success
+	#number of adults at time t=i is equal to number of adults at time t=i-1 x survival of adults plus number of subadults at t=i-1 x survival of subadults:
+		life.table.TX$n_adults[life.table.TX$time==i] = (life.table.TX$n_adults[life.table.TX$time==i-1]* surv_adult) + (life.table.TX$n_subadults[life.table.TX$time==i-1]* surv_subadult)
+	#number of subadults at time t=i is equal to number of fledglings at time t=i-1 x survival of fledglings:
+		life.table.TX$n_subadults[life.table.TX$time==i] = life.table.TX$n_fledge[life.table.TX$time==i-1]* surv_fledge
+	#number of eggs at time t=i is equal to number of adults at time t=i x clutch size of adults plus number of subadults at time t=i x clutch size of subadults :
+		life.table.TX$n_eggs[life.table.TX$time==i] = ((life.table.TX$n_adults[life.table.TX$time==i]/2)* clutch_adult) + ((life.table.TX$n_subadults[life.table.TX$time==i]/2)* clutch_subadult) #number of eggs produced given the # of adults and 1st years and their respective clutch sizes
+	#number of fledglings at time t=i is equal to number of eggs at time t=i x egg success:
+		life.table.TX$n_fledge[life.table.TX$time==i] = life.table.TX$n_eggs[life.table.TX$time==i]* egg_success
 }
 
 
