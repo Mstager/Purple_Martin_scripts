@@ -12,9 +12,9 @@ nests$laydate<-yday(as.Date(nests$X1st.egg, format="%m/%d/%y"))
 nests$Cust.. <- as.factor(nests$Cust..)
 
 #Add fledge success
-nests$Success <- 0
-nests$Success[nests$Fledge > 0] <- 1
-nests$Success<-as.factor(nests$Success)
+nests$nest_success <- 0
+nests$nest_success[nests$Fledge > 0] <- 1
+nests$nest_success<-as.factor(nests$nest_success)
 
 #Add egg success for life table analysis
 nests$egg_success<- nests$Fledge/nests$Eggs
@@ -36,12 +36,12 @@ nrow(TX_nests[!is.na(TX_nests$laydate),])
 nrow(TX_nests[TX_nests$Male!="",])
 
 #nest success ~ laydate
-mod<-glm(Success~laydate, TX_nests, family="binomial")
+mod<-glm(nest_success~laydate, TX_nests, family="binomial")
 summary(mod)
 
 
 plot_df <- augment(mod, type.predict = "response")
-plot_df$Success <- as.integer(as.character(plot_df$Success))
+plot_df$nest_success <- as.integer(as.character(plot_df$nest_success))
 
 fam <- family(mod)
 fam
@@ -58,7 +58,7 @@ TX_nests <- mutate(TX_nests, fit_resp = ilink(fit_link), right_upr = ilink(fit_l
 a<-ggplot(plot_df, aes(x = laydate)) +
   geom_line(aes(y = .fitted), color = "#4A6FE3", lwd=2) +
   labs(x = "First Egg Date (day of year)", y = "Nest Success") +
-  geom_point(aes(y = Success), alpha = 0.2) +
+  geom_point(aes(y = nest_success), alpha = 0.2) +
   theme(legend.position="none",
   	panel.background=element_rect(fill="white"), 
   	plot.margin=unit(c(1,1,1,1),"cm"), 
@@ -141,9 +141,9 @@ q3tx_sd<-sd(unlist(q3ls)[1:23])
 #difference in days between laydate in 2021 and long-term mean
 meanls[[24]] - meantx
 
-TX_success<-data.frame(TX_nests %>% group_by(Year) %>% count(Success))
+TX_success<-data.frame(TX_nests %>% group_by(Year) %>% count(nest_success))
 TX_success_year<-data.frame(TX_success %>% group_by(Year) %>% summarize(sum(n)))
-TX_nest_success<-data.frame(year = TX_success_year$Year, prop_fledge=TX_success$n[TX_success$Success==1]/TX_success_year$sum.n)
+TX_nest_success<-data.frame(year = TX_success_year$Year, prop_fledge=TX_success$n[TX_success$nest_success==1]/TX_success_year$sum.n)
 TX_nest_success
 mean(TX_nest_success$prop_fledge[1:23])
 sd(TX_nest_success$prop_fledge[1:23])
@@ -173,7 +173,7 @@ ggplot(TX_nests, aes(y = Year, x = laydate)) +
 
 
 #nest success ~ male age class using nests w/ males of known age
-summary(glm(Success~Male, TX_nests[TX_nests$Male!="",], family="binomial"))
+summary(glm(nest_success~Male, TX_nests[TX_nests$Male!="",], family="binomial"))
 
 
 #egg success for life table
@@ -249,7 +249,7 @@ nrow(LA_nests[!is.na(LA_nests$laydate),])
 nrow(LA_nests[LA_nests$Male!="",])
 
 #nest success ~ laydate
-m<-glm(Success~laydate, LA_nests, family="binomial")
+m<-glm(nest_success~laydate, LA_nests, family="binomial")
 summary(m)
 
 
@@ -321,9 +321,9 @@ q3LA_sd<-sd(unlist(q3ls)[1:19])
 meanls[[20]] - meanLA
 
 
-LA_success<-data.frame(LA_nests %>% group_by(Year) %>% count(Success))
+LA_success<-data.frame(LA_nests %>% group_by(Year) %>% count(nest_success))
 LA_success_year<-data.frame(LA_success %>% group_by(Year) %>% summarize(sum(n)))
-LA_nest_success<-data.frame(year = LA_success_year$Year, prop_fledge=LA_success$n[LA_success$Success==1]/LA_success_year$sum.n)
+LA_nest_success<-data.frame(year = LA_success_year$Year, prop_fledge=LA_success$n[LA_success$nest_success==1]/LA_success_year$sum.n)
 mean(LA_nest_success$prop_fledge[1:19])
 sd(LA_nest_success$prop_fledge[1:19])
 range(LA_nest_success$prop_fledge[1:19])
@@ -352,7 +352,7 @@ ggplot(LA_nests, aes(y = Year, x = laydate)) +
 
 
 #nest success ~ male age class using nests w/ males of known age
-summary(glm(Success~Male, LA_nests[LA_nests$Male!="",], family="binomial"))
+summary(glm(nest_success~Male, LA_nests[LA_nests$Male!="",], family="binomial"))
 
 
 #egg success for life table
