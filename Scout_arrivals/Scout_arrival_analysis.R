@@ -83,7 +83,7 @@ for(a in q3ls){
 sadtx$Q3 <- unlist(dfq3ls)
 sadtx$Q3_md <- format(as.Date(sadtx$Q3), "%m-%d")
 
-#calculate mean day of year for 1999-2021
+#calculate mean day of year for 1998-2021
 mean(yday(unlist(meanls))[4:27])
 sdtx<-sd(yday(unlist(meanls))[4:27])
 meantx<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
@@ -91,7 +91,7 @@ tx_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 tx_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 tx_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -212,7 +212,7 @@ for(a in q3ls){
 sadla$Q3 <- unlist(dfq3ls)
 sadla$Q3_md <- format(as.Date(sadla$Q3), "%m-%d")
 
-#calculate mean day of year for 1999-2021
+#calculate mean day of year for 1998-2021
 mean(yday(unlist(meanls))[4:27])
 sdla<-sd(yday(unlist(meanls))[4:27])
 meanla<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
@@ -220,7 +220,7 @@ la_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 la_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 la_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -342,7 +342,7 @@ for(a in q3ls){
 sadms$Q3 <- unlist(dfq3ls)
 sadms$Q3_md <- format(as.Date(sadms$Q3), "%m-%d")
 
-#calculate mean day of year for 1999-2021
+#calculate mean day of year for 1998-2021
 mean(yday(unlist(meanls))[4:27])
 sdms<-sd(yday(unlist(meanls))[4:27])
 meanms<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
@@ -350,7 +350,7 @@ ms_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ms_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ms_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -478,7 +478,7 @@ ar_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ar_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ar_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -603,7 +603,7 @@ ok_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ok_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ok_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -728,7 +728,7 @@ al_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 al_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 al_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -854,7 +854,7 @@ ga_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ga_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ga_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -979,7 +979,7 @@ fl_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 fl_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 fl_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -1129,7 +1129,7 @@ sc_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 sc_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 sc_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
@@ -1255,7 +1255,7 @@ tn_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 tn_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 tn_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean and st. dev of variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1998-2021
 mean(unlist(varls[4:27]))
 sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
