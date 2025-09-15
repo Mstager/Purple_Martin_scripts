@@ -91,8 +91,9 @@ tx_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 tx_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 tx_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1999-2021
 mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
 
 #minimum arrival
@@ -219,8 +220,9 @@ la_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 la_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 la_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
-#calculate mean variance from mean for 1999-2021
+#calculate mean and st. dev of variance from mean for 1999-2021
 mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
 varls[[3]] #variance in 2022
 
 #minimum arrival
@@ -282,6 +284,7 @@ nrow(sadms) #1337
 sadms$Month_Day <- format(mdy(sadms$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadms$YEAR)) {
@@ -294,6 +297,8 @@ for (a in unique(sadms$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -344,6 +349,11 @@ meanms<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
 ms_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ms_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ms_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
+
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_ms=NULL
@@ -402,6 +412,7 @@ nrow(sadar) #1544
 sadar$Month_Day <- format(mdy(sadar$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadar$YEAR)) {
@@ -414,6 +425,8 @@ for (a in unique(sadar$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -464,6 +477,11 @@ meanar<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
 ar_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ar_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ar_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
+
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_ar=NULL
@@ -519,6 +537,7 @@ nrow(sadok) #1946
 sadok$Month_Day <- format(mdy(sadok$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadok$YEAR)) {
@@ -531,6 +550,8 @@ for (a in unique(sadok$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -581,6 +602,11 @@ meanok<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
 ok_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ok_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ok_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
+
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_ok=NULL
@@ -636,6 +662,7 @@ nrow(sadal) #2314
 sadal$Month_Day <- format(mdy(sadal$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadal$YEAR)) {
@@ -648,6 +675,8 @@ for (a in unique(sadal$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -698,6 +727,11 @@ meanal<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
 al_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 al_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 al_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
+
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_al=NULL
@@ -754,6 +788,7 @@ nrow(sadga) #1773
 sadga$Month_Day <- format(mdy(sadga$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadga$YEAR)) {
@@ -766,6 +801,8 @@ for (a in unique(sadga$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -816,6 +853,11 @@ meanga<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
 ga_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 ga_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 ga_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
+
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_ga=NULL
@@ -871,6 +913,7 @@ nrow(sadfl) #3569
 sadfl$Month_Day <- format(mdy(sadfl$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadfl$YEAR)) {
@@ -883,6 +926,8 @@ for (a in unique(sadfl$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -934,6 +979,10 @@ fl_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 fl_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 fl_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_fl=NULL
@@ -1014,6 +1063,7 @@ nrow(sadsc) #1732
 sadsc$Month_Day <- format(mdy(sadsc$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadsc$YEAR)) {
@@ -1026,6 +1076,8 @@ for (a in unique(sadsc$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -1077,6 +1129,10 @@ sc_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 sc_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 sc_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
 
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_sc=NULL
@@ -1133,6 +1189,7 @@ nrow(sadtn) #2266
 sadtn$Month_Day <- format(mdy(sadtn$DATE), "%m-%d")
 #getting mean, q1, q3
 meanls <- list()
+varls <- list()
 q1ls <- list()
 q3ls <- list()
 for (a in unique(sadtn$YEAR)) {
@@ -1145,6 +1202,8 @@ for (a in unique(sadtn$YEAR)) {
   }
   mean <- as.Date(mean(mdy(unlist(datels))))
   meanls <- c(meanls, as.character(mean))
+  variance <- var(mdy(unlist(datels)))
+  varls<-c(varls, variance)
   q1 <- as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[1], origin="1970-01-01")
   q1ls <- c(q1ls, as.character(q1))
   q3 <-as.Date(quantile(as.numeric(mdy(unlist(datels))), probs = c(0.25, 0.5, 0.75), na.rm = TRUE)[3], origin="1970-01-01")
@@ -1195,6 +1254,11 @@ meantn<-as.Date(mean(yday(unlist(meanls))[4:27]),origin="2024/12/31")
 tn_2022<-as.Date(mean(yday(unlist(meanls))[3]),origin="2024/12/31")
 tn_2023<-as.Date(mean(yday(unlist(meanls))[2]),origin="2024/12/31")
 tn_2024<-as.Date(mean(yday(unlist(meanls))[1]),origin="2024/12/31")
+
+#calculate mean and st. dev of variance from mean for 1999-2021
+mean(unlist(varls[4:27]))
+sd(unlist(varls[4:27]))
+varls[[3]] #variance in 2022
 
 #minimum arrival
 min_arrival_tn=NULL
