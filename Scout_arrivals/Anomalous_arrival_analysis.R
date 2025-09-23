@@ -61,8 +61,9 @@ mod5<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Feb); summary(mo
 mod6<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Mar); summary(mod6); AIC(mod6)
 mod_null<-lm(Arrival_anomaly~1, subset=Year<2021, data=all_Jan); summary(mod_null); AIC(mod_null)
 
-#Model accounting for temporal autocorrelation; don't see any evidence 
+#Model accounting for temporal autocorrelation; phi > 0
 mod7<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod7)
+mod8<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Feb[all_Feb$Year<2021,]); summary(mod8)
 
 
 
