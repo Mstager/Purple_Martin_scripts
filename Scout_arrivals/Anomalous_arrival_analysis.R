@@ -87,6 +87,8 @@ ggplot(all_Feb[all_Feb$Year<2021,], aes(y=Arrival_anomaly, x=Anomaly_C))+
 	axis.line=element_line(size=1))
 
 ##############################################################################
+install.packages(c("lubridate","rptR","data.table","dplyr","lme4","lmerTest"))#if not already installed
+
 library(lubridate)
 library(rptR)
 library(data.table)
