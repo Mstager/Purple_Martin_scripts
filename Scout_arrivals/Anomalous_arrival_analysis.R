@@ -45,14 +45,26 @@ Jan <- weather[weather$Month=="1",]
 all_Jan<-merge(Jan, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "State"))
 Feb <- weather[weather$Month=="2",]
 all_Feb<-merge(Feb, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "State"))
+Mar <- weather[weather$Month=="3",]
+all_Mar<-merge(Mar, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "State"))
 
-#Arrival ~ temp anomaly during winter months; state not significant as random effect
-mod1<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Feb); summary(mod1); AIC(mod1)
-mod2<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021, data=all_Jan); summary(mod2); AIC(mod2)
+#Mixed models with arrival ~ temp anomaly during winter months with state as random effect
+mod1<-lmer(Arrival_anomaly~Anomaly_C+(1|State), data=all_Jan, subset=Year<2021); summary(mod1); AIC(mod1)
+mod2<-lmer(Arrival_anomaly~Anomaly_C+(1|State), data=all_Feb, subset=Year<2021); summary(mod2); AIC(mod2)
+mod3<-lmer(Arrival_anomaly~Anomaly_C+(1|State), data=all_Mar, subset=Year<2021); summary(mod3); AIC(mod3)
+mod_null_me<-lmer(Anomaly_C~1+(1|State), data=all_Jan, subset=Year<2021); summary(mod_null_me); AIC(mod_null_me)
+#all models show singular fit with state as random effect (variance estimated to be 0)
+
+#Fixed effect models for arrival ~ temp anomaly during winter months 
+mod4<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021, data=all_Jan); summary(mod4); AIC(mod4)
+mod5<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Feb); summary(mod5); AIC(mod5)
+mod6<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Mar); summary(mod6); AIC(mod6)
 mod_null<-lm(Arrival_anomaly~1, subset=Year<2021, data=all_Jan); summary(mod_null); AIC(mod_null)
 
 #Model accounting for temporal autocorrelation; don't see any evidence 
-mod5<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State),  subset=Year<2021, data=all_Feb); summary(mod5); AIC(mod5)
+mod7<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod7)
+
+
 
 #Plot Figure 4a
 pal <- hcl.colors(n = 11, palette = "Blue-Red2")
