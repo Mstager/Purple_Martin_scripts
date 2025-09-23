@@ -68,7 +68,7 @@ mod8<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, co
 
 
 #Plot Figure 4a
-pal <- hcl.colors(n = 11, palette = "Blue-Red2")
+pal <- hcl.colors(n = 11, palette = "Blue-Red")
 ggplot(all_Feb[all_Feb$Year<2021,], aes(y=Arrival_anomaly, x=Anomaly_C))+ 
 	geom_point(size=2)+
 	xlab("Temperature Anomaly (°C)")+
@@ -88,7 +88,7 @@ ggplot(all_Feb[all_Feb$Year<2021,], aes(y=Arrival_anomaly, x=Anomaly_C))+
 	axis.line=element_line(size=1))
 
 ##############################################################################
-install.packages(c("lubridate","rptR","data.table","dplyr","lme4","lmerTest"))#if not already installed
+install.packages(c("lubridate","rptR","data.table","dplyr","lme4","lmerTest","ggplot2"))#if not already installed
 
 library(lubridate)
 library(rptR)
@@ -96,6 +96,7 @@ library(data.table)
 library(dplyr)
 library(lme4)
 library(lmerTest)
+library(ggplot2)
 
 #Texas data
 tx<-read.csv(file="TX_arrivals_edited.csv")
@@ -121,6 +122,11 @@ mod1<-lmer(yday~YEAR+(1|site), data=tx_temporal); summary(mod1)
 #repeatability of yday
 rpt(yday ~ (1|site), grname="site", data = tx, nboot=0, npermut=0, datatype = "Poisson")
 
+tx_late<-tx[tx$yday<160 & tx$YEAR<2021,]
+tx_test<-tx_late %>% count(site)
+tx_test<-tx_test[tx_test$n>1,]
+tx_rpt<-merge(tx_late, tx_test, by="site")
+tx_rpt$site[order(tx_rpt$site)]
 
 #repeatability of yday only at sites with repeated measures
 rpt(yday ~ (1|site), grname="site", data = tx_rpt, nboot=0, npermut=0, datatype = "Poisson")
