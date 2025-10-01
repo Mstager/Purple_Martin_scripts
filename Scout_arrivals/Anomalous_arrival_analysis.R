@@ -1,11 +1,12 @@
 #R script to generate Figure 4a and associated analysis regarding anomalous arrivals
 
-install.packages(c("lme4","MuMIn","nlme","MASS","AICcmodavg","ggplot2")) #if not already installed
+install.packages(c("lme4","MuMIn","nlme","MASS","AICcmodavg","r2glmm","ggplot2")) #if not already installed
 library(lme4)
 library(MuMIn)
 library(nlme)
 library(MASS)
 library(AICcmodavg)
+library(r2glmm)
 library(ggplot2)
 
 #arrival data files generated in Scout_arrival_analysis.R
@@ -44,20 +45,14 @@ Jan <- weather[weather$Month=="1",]
 all_Jan<-merge(Jan, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "State"))
 Feb <- weather[weather$Month=="2",]
 all_Feb<-merge(Feb, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "State"))
-Mar <- weather[weather$Month=="3",]
-all_Mar<-merge(Mar, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "State"))
 
-#Mixed models with arrival ~ temp anomaly during winter months with state as random effect
-mod1<-lmer(Arrival_anomaly~Anomaly_C+(1|State), data=all_Jan, subset=Year<2021); summary(mod1); AIC(mod1)
-mod2<-lmer(Arrival_anomaly~Anomaly_C+(1|State), data=all_Feb, subset=Year<2021); summary(mod2); AIC(mod2)
-mod3<-lmer(Arrival_anomaly~Anomaly_C+(1|State), data=all_Mar, subset=Year<2021); summary(mod3); AIC(mod3)
-mod_null_me<-lmer(Anomaly_C~1+(1|State), data=all_Jan, subset=Year<2021); summary(mod_null_me); AIC(mod_null_me)
-#all models show singular fit with state as random effect (variance estimated to be 0)
+#Mixed models with arrival ~ temp anomaly during winter months with state as random effect accounting for temporal autocorrelation; phi > 0
+mod1<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod1)
+mod2<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Feb[all_Feb$Year<2021,]); summary(mod2)
+mod_null<-glmmPQL(Arrival_anomaly~1, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod_null)
 
-#Model accounting for temporal autocorrelation; phi > 0
-mod5<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod5)
-mod6<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Feb[all_Feb$Year<2021,]); summary(mod6)
-
+#comparing R-squared values
+r2beta(mod1); r2beta(mod2); r2beta(mod_null)
 
 
 #Plot Figure 4a
@@ -65,13 +60,10 @@ new_Feb<-all_Feb[all_Feb$Year<2021,][order(all_Feb$Anomaly_C[all_Feb$Year<2021])
 State<-"TX"
 Anomaly_C = seq(-3.555556, by = 0.04282408, length.out = nrow(new_Feb))
 newdat <- data.frame(Anomaly_C = Anomaly_C, State = State)
-
-
-TX.prediction<-predictSE(mod6, newdata=newdat, se.fit=TRUE)
+TX.prediction<-predictSE(mod2, newdata=newdat, se.fit=TRUE)
 TX.prediction$lower <- TX.prediction$fit - 1.96*TX.prediction$se.fit
 TX.prediction$upper <- TX.prediction$fit + 1.96*TX.prediction$se.fit
 TX.prediction$Anomaly_C<-newdat$Anomaly_C
-
 pred <- data.frame(Anomaly_C = TX.prediction$Anomaly_C, upper = TX.prediction$upper, lower = TX.prediction$lower, fit = TX.prediction$fit)
 
 ggplot(pred, aes(x=Anomaly_C, y=fit)) + 
