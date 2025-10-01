@@ -49,10 +49,9 @@ all_Feb<-merge(Feb, arrival, by.x=c("Year", "State"), by.y=c("Year_tminus1", "St
 #Mixed models with arrival ~ temp anomaly during winter months with state as random effect accounting for temporal autocorrelation; phi > 0
 mod1<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod1)
 mod2<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Feb[all_Feb$Year<2021,]); summary(mod2)
-mod_null<-glmmPQL(Arrival_anomaly~1, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod_null)
 
 #comparing R-squared values
-r2beta(mod1); r2beta(mod2); r2beta(mod_null)
+r2beta(mod1); r2beta(mod2)
 
 
 #Plot Figure 4a
