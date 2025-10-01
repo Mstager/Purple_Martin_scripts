@@ -67,7 +67,7 @@ pred <- data.frame(Anomaly_C = TX.prediction$Anomaly_C, upper = TX.prediction$up
 
 ggplot(pred, aes(x=Anomaly_C, y=fit)) + 
 	geom_point(aes(x=new_Feb$Anomaly_C, y=new_Feb$Arrival_anomaly), size=2) + 
-	geom_line(col="#4c89ff", lwd=2) +
+	geom_line(col="#4A6FE3", lwd=2) +
 	geom_ribbon(aes(ymin = upper, ymax = lower), linetype=3, alpha = 0.2)+
 	xlab("Temperature Anomaly (°C)")+
 	ylab("Arrival Anomaly (Days)")+
@@ -187,7 +187,7 @@ new<-merge(tx_temporal, tx_jun, by.x="YEAR", by.y="Year")
 
 ggplot(data=new, aes(y=yday, x=YEAR)) + 
 	geom_point(color="#ABB4E2")+
-	stat_smooth(method="glm", col="4c89ff")+
+	stat_smooth(method="glm", col="#4A6FE3")+
 	geom_line(aes(y=upr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) + #upper limit of 95% CI
 	geom_line(aes(y=lwr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) +  #lower limit of 95% CI
 	geom_line(aes(y=fit*7, x=YEAR), lwd=2, col=pal[11]) + 
