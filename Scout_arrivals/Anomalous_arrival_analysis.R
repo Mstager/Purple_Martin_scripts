@@ -1,13 +1,12 @@
 #R script to generate Figure 4a and associated analysis regarding anomalous arrivals
 
-install.packages(c("climwin","lme4","MuMIn","nlme","MASS","ggplot2","RColorBrewer")) #if not already installed
-library(climwin)
+install.packages(c("lme4","MuMIn","nlme","MASS","AICcmodavg","ggplot2")) #if not already installed
 library(lme4)
 library(MuMIn)
 library(nlme)
 library(MASS)
+library(AICcmodavg)
 library(ggplot2)
-library(RColorBrewer)
 
 #arrival data files generated in Scout_arrival_analysis.R
 OK_arr<-read.csv(file="OK_anomalous_arrivals.csv")
@@ -55,27 +54,32 @@ mod3<-lmer(Arrival_anomaly~Anomaly_C+(1|State), data=all_Mar, subset=Year<2021);
 mod_null_me<-lmer(Anomaly_C~1+(1|State), data=all_Jan, subset=Year<2021); summary(mod_null_me); AIC(mod_null_me)
 #all models show singular fit with state as random effect (variance estimated to be 0)
 
-#Fixed effect models for arrival ~ temp anomaly during winter months 
-mod4<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021, data=all_Jan); summary(mod4); AIC(mod4)
-mod5<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Feb); summary(mod5); AIC(mod5)
-mod6<-lm(Arrival_anomaly~Anomaly_C, subset=Year<2021,  data=all_Mar); summary(mod6); AIC(mod6)
-mod_null<-lm(Arrival_anomaly~1, subset=Year<2021, data=all_Jan); summary(mod_null); AIC(mod_null)
-
 #Model accounting for temporal autocorrelation; phi > 0
-mod7<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod7)
-mod8<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Feb[all_Feb$Year<2021,]); summary(mod8)
+mod5<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Jan[all_Jan$Year<2021,]); summary(mod5)
+mod6<-glmmPQL(Arrival_anomaly~Anomaly_C, random = ~ 1|State, family=gaussian, correlation = corCAR1(form = ~ Year|State), data=all_Feb[all_Feb$Year<2021,]); summary(mod6)
 
 
 
 #Plot Figure 4a
-pal <- hcl.colors(n = 11, palette = "Blue-Red")
-ggplot(all_Feb[all_Feb$Year<2021,], aes(y=Arrival_anomaly, x=Anomaly_C))+ 
-	geom_point(size=2)+
+new_Feb<-all_Feb[all_Feb$Year<2021,][order(all_Feb$Anomaly_C[all_Feb$Year<2021]),]
+State<-"TX"
+Anomaly_C = seq(-3.555556, by = 0.04282408, length.out = nrow(new_Feb))
+newdat <- data.frame(Anomaly_C = Anomaly_C, State = State)
+
+
+TX.prediction<-predictSE(mod6, newdata=newdat, se.fit=TRUE)
+TX.prediction$lower <- TX.prediction$fit - 1.96*TX.prediction$se.fit
+TX.prediction$upper <- TX.prediction$fit + 1.96*TX.prediction$se.fit
+TX.prediction$Anomaly_C<-newdat$Anomaly_C
+
+pred <- data.frame(Anomaly_C = TX.prediction$Anomaly_C, upper = TX.prediction$upper, lower = TX.prediction$lower, fit = TX.prediction$fit)
+
+ggplot(pred, aes(x=Anomaly_C, y=fit)) + 
+	geom_point(aes(x=new_Feb$Anomaly_C, y=new_Feb$Arrival_anomaly), size=2) + 
+	geom_line(col="#4c89ff", lwd=2) +
+	geom_ribbon(aes(ymin = upper, ymax = lower), linetype=3, alpha = 0.2)+
 	xlab("Temperature Anomaly (°C)")+
 	ylab("Arrival Anomaly (Days)")+
-	stat_smooth(method="glm", col=pal[1], lwd=2)+
-	xlim(-4,7)+
-	scale_linetype_manual(values=c('solid','solid'))+
 	theme_minimal()+
 	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
 	legend.position = "none", 
@@ -86,6 +90,7 @@ ggplot(all_Feb[all_Feb$Year<2021,], aes(y=Arrival_anomaly, x=Anomaly_C))+
 	axis.ticks.x=element_line(colour="black"), 
 	axis.ticks.y=element_line(colour="black"), 
 	axis.line=element_line(size=1))
+
 
 ##############################################################################
 install.packages(c("lubridate","rptR","data.table","dplyr","lme4","lmerTest","ggplot2"))#if not already installed
@@ -191,7 +196,7 @@ new<-merge(tx_temporal, tx_jun, by.x="YEAR", by.y="Year")
 
 ggplot(data=new, aes(y=yday, x=YEAR)) + 
 	geom_point(color="#ABB4E2")+
-	stat_smooth(method="glm", col=pal[1])+
+	stat_smooth(method="glm", col="4c89ff")+
 	geom_line(aes(y=upr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) + #upper limit of 95% CI
 	geom_line(aes(y=lwr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) +  #lower limit of 95% CI
 	geom_line(aes(y=fit*7, x=YEAR), lwd=2, col=pal[11]) + 
