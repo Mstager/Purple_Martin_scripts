@@ -1,6 +1,6 @@
 # Purple_Martin_scripts
 
-## Data and code for: Stager et al. _in review_ "Immediate and long-term consequences of a storm-induced mass mortality event"
+## Data and code for: Stager et al. _in review_ "Storm-induced mass mortality results in both immediate and long-term consequences for a migratory songbird"
 
 
 ### Genomic analyses
