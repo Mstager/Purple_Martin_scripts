@@ -182,7 +182,7 @@ ci95 <- predict(mod_tx_jun, tx_jun, interval = "confidence", level = 0.95)
 
 tx_jun <- cbind(tx_jun, ci95)
 
-#plot Figure 4c
+#plot Figure 4d
 new<-merge(tx_temporal, tx_jun, by.x="YEAR", by.y="Year")
 
 ggplot(data=new, aes(y=yday, x=YEAR)) + 
@@ -190,7 +190,7 @@ ggplot(data=new, aes(y=yday, x=YEAR)) +
 	stat_smooth(method="glm", col="#4A6FE3")+
 	geom_line(aes(y=upr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) + #upper limit of 95% CI
 	geom_line(aes(y=lwr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) +  #lower limit of 95% CI
-	geom_line(aes(y=fit*7, x=YEAR), lwd=2, col=pal[11]) + 
+	geom_line(aes(y=fit*7, x=YEAR), lwd=2, col="#D33F6A") + 
 	geom_point(aes(y=(Mean_C*7), x=YEAR)) +
 	labs(y="Arrival Date", x="Year") +
 	scale_x_continuous(breaks=c(2000,2005,2010,2015,2020))+
@@ -283,3 +283,29 @@ mod_la_mar<-lm(Mean_C~Year, data=la_mar); summary(mod_la_mar)
 mod_la_apr<-lm(Mean_C~Year, data=la_apr); summary(mod_la_apr)
 mod_la_may<-lm(Mean_C~Year, data=la_may); summary(mod_la_may)
 mod_la_jun<-lm(Mean_C~Year, data=la_jun); summary(mod_la_jun)
+
+ci95 <- predict(mod_la_jun, la_jun, interval = "confidence", level = 0.95)
+
+la_jun <- cbind(la_jun, ci95)
+
+#plot Figure S5
+new_la<-merge(la_temporal, la_jun, by.x="YEAR", by.y="Year")
+
+ggplot(data=new_la, aes(y=yday, x=YEAR)) + 
+	geom_point(color="#ABB4E2")+
+	stat_smooth(method="glm", col="#4A6FE3")+
+	geom_line(aes(y=upr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) + #upper limit of 95% CI
+	geom_line(aes(y=lwr*7, x=YEAR), lwd=1, col="#E5A5B1", lty=2) +  #lower limit of 95% CI
+	geom_line(aes(y=fit*7, x=YEAR), lwd=2, col="#D33F6A") + 
+	geom_point(aes(y=(Mean_C*7), x=YEAR)) +
+	labs(y="Arrival Date", x="Year") +
+	scale_x_continuous(breaks=c(2000,2005,2010,2015,2020))+
+	scale_y_continuous(limits = c(8, 175), sec.axis = sec_axis(~./7)) + 
+    theme(panel.background=element_rect(fill="white"), 
+  	legend.position = "none", 
+	plot.margin=unit(c(1,1,1,1),"cm"), 
+  	axis.text.x=element_text(size=14, colour="black"), 
+	axis.text.y=element_text(size=14, colour="black"), 
+	axis.title.x=element_text(size=22, colour="black", margin=margin(20,0,0,0)), 
+	axis.title.y=element_text(size=22, colour="black", margin=margin(0,10,0,0)), 
+	axis.line=element_line(size=1))
