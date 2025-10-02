@@ -11,7 +11,7 @@ nests<-read.csv("PMW_Nestdata.csv")
 nests$laydate<-yday(as.Date(nests$X1st.egg, format="%m/%d/%y"))
 nests$Cust.. <- as.factor(nests$Cust..)
 
-#Add fledge success
+#Add nest success (whether or not at least one young fledged from nest)
 nests$nest_success <- 0
 nests$nest_success[nests$Fledge > 0] <- 1
 nests$nest_success<-as.factor(nests$nest_success)
@@ -54,7 +54,7 @@ TX_nests <- bind_cols(TX_nests, setNames(as_tibble(predict(mod, TX_nests, se.fit
 
 TX_nests <- mutate(TX_nests, fit_resp = ilink(fit_link), right_upr = ilink(fit_link + (2*se_link)), right_lwr = ilink(fit_link - (2*se_link)))
 
-#Plot Figure 4b
+#Plot Figure 4c
 a<-ggplot(plot_df, aes(x = laydate)) +
   geom_line(aes(y = .fitted), color = "#4A6FE3", lwd=2) +
   labs(x = "First Egg Date (day of year)", y = "Nest Success") +
@@ -249,9 +249,40 @@ nrow(LA_nests[!is.na(LA_nests$laydate),])
 nrow(LA_nests[LA_nests$Male!="",])
 
 #nest success ~ laydate
-m<-glm(nest_success~laydate, LA_nests, family="binomial")
-summary(m)
+modLA<-glm(nest_success~laydate, LA_nests, family="binomial")
+summary(modLA)
 
+plot_df <- augment(modLA, type.predict = "response")
+plot_df$nest_success <- as.integer(as.character(plot_df$nest_success))
+
+fam <- family(modLA)
+fam
+str(fam)
+
+ilink <- fam$linkinv
+ilink
+
+LA_nests <- bind_cols(LA_nests, setNames(as_tibble(predict(modLA, LA_nests, se.fit = TRUE)[1:2]), c('fit_link','se_link')))
+
+LA_nests <- mutate(LA_nests, fit_resp = ilink(fit_link), right_upr = ilink(fit_link + (2*se_link)), right_lwr = ilink(fit_link - (2*se_link)))
+
+#Plot Figure S4
+a<-ggplot(plot_df, aes(x = laydate)) +
+  geom_line(aes(y = .fitted), color = "#4A6FE3", lwd=2) +
+  labs(x = "First Egg Date (day of year)", y = "Nest Success") +
+  geom_point(aes(y = nest_success), alpha = 0.2) +
+  theme(legend.position="none",
+  	panel.background=element_rect(fill="white"), 
+  	plot.margin=unit(c(1,1,1,1),"cm"), 
+  	axis.title.y=element_text(size = 22, margin=margin(0,10,0,0)), 
+  	axis.title.x=element_text(size = 22, margin=margin(20,0,0,0)),
+  	axis.text.x = element_text(size = 14), 
+  	axis.text.y = element_text(size = 14),
+  	axis.line=element_line(size=1))
+
+a + geom_ribbon(data = LA_nests,
+                  aes(ymin = right_lwr, ymax = right_upr),
+                  alpha = 0.1)
 
 #getting mean, q1, q3 laydate
 meanls <- list()
