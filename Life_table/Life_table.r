@@ -153,34 +153,34 @@ TX_recovery2$time[TX_recovery2$time<10] <- NA
 
 #######################################################
 #to maintain a stable/growing population in LA
-life.table.LA = data.frame(time = 0:timesteps, n_adults = NA, n_1styr = NA, n_fledge = NA, n_eggs = NA)
+life.table.LA = data.frame(time = 0:timesteps, n_adults = NA, n_subadults = NA, n_fledge = NA, n_eggs = NA)
 life.table.LA[1,] <- life.table[1,]
 
 for (i in 1:timesteps) {
-	life.table.LA$n_adults[life.table.LA$time==i] = (life.table.LA$n_adults[life.table.LA$time==i-1]* surv_adult) + (life.table.LA$n_1styr[life.table.LA$time==i-1]* surv_1styr)
-	life.table.LA$n_1styr[life.table.LA$time==i] = life.table.LA$n_fledge[life.table.LA$time==i-1]* surv_fledge
-	life.table.LA$n_eggs[life.table.LA$time==i] = ((life.table.LA$n_adults[life.table.LA$time==i]/2)* clutch_adult) + ((life.table.LA$n_1styr[life.table.LA$time==i]/2)* clutch_1styr) #maximum number of eggs produced given the number of adults and 1st years in the population and their respective clutch sizes
+	life.table.LA$n_adults[life.table.LA$time==i] = (life.table.LA$n_adults[life.table.LA$time==i-1]* surv_adult) + (life.table.LA$n_subadults[life.table.LA$time==i-1]* surv_subadult)
+	life.table.LA$n_subadults[life.table.LA$time==i] = life.table.LA$n_fledge[life.table.LA$time==i-1]* surv_fledge
+	life.table.LA$n_eggs[life.table.LA$time==i] = ((life.table.LA$n_adults[life.table.LA$time==i]/2)* clutch_adult) + ((life.table.LA$n_subadults[life.table.LA$time==i]/2)* clutch_subadult) #maximum number of eggs produced given the number of adults and 1st years in the population and their respective clutch sizes
 	life.table.LA$n_fledge[life.table.LA$time==i] = life.table.LA$n_eggs[life.table.LA$time==i]* egg_success
 }
 
 
 #storm decrement in LA w/ reduced adult survival
-LA_recovery <- data.frame(time=rep(NA,21), mortality=rep(NA,21))
+LA_recovery <- data.frame(time=rep(NA,26), mortality=rep(NA,26))
 
-life.table.LA.storm = data.frame(time = 0:timesteps, n_adults = NA, n_1styr = NA, n_fledge = NA, n_eggs = NA)
+life.table.LA.storm = data.frame(time = 0:timesteps, n_adults = NA, n_subadults = NA, n_fledge = NA, n_eggs = NA)
 life.table.LA.storm[1,] <- life.table.LA[1,]
 
-for (j in 1:21) {
+for (j in 1:26) {
 	adult_storm_mortality = (j-1)*0.01
 	for (i in 1:timesteps) {
 		if (i ==1) {
-			life.table.LA.storm$n_adults[life.table.LA.storm$time==i] = (life.table.LA.storm$n_adults[life.table.LA.storm$time==i-1]* (surv_adult-adult_storm_mortality)) + (life.table.LA.storm$n_1styr[life.table.LA.storm$time==i-1]* surv_1styr)
+			life.table.LA.storm$n_adults[life.table.LA.storm$time==i] = (life.table.LA.storm$n_adults[life.table.LA.storm$time==i-1]* (surv_adult-adult_storm_mortality)) + (life.table.LA.storm$n_subadults[life.table.LA.storm$time==i-1]* surv_subadult)
 		}
 		else {
-			life.table.LA.storm$n_adults[life.table.LA.storm$time==i] = (life.table.LA.storm$n_adults[life.table.LA.storm$time==i-1]* surv_adult) + (life.table.LA.storm$n_1styr[life.table.LA.storm$time==i-1]* surv_1styr)
+			life.table.LA.storm$n_adults[life.table.LA.storm$time==i] = (life.table.LA.storm$n_adults[life.table.LA.storm$time==i-1]* surv_adult) + (life.table.LA.storm$n_subadults[life.table.LA.storm$time==i-1]* surv_subadult)
 		}
-		life.table.LA.storm$n_1styr[life.table.LA.storm$time==i] = life.table.LA.storm$n_fledge[life.table.LA.storm$time==i-1]* surv_fledge
-		life.table.LA.storm$n_eggs[life.table.LA.storm$time==i] = ((life.table.LA.storm$n_adults[life.table.LA.storm$time==i]/2)* clutch_adult) + ((life.table.LA.storm$n_1styr[life.table.LA.storm$time==i]/2)* clutch_1styr) #maximum number of eggs produced given the number of adults and 1st years in the population and their respective clutch sizes
+		life.table.LA.storm$n_subadults[life.table.LA.storm$time==i] = life.table.LA.storm$n_fledge[life.table.LA.storm$time==i-1]* surv_fledge
+		life.table.LA.storm$n_eggs[life.table.LA.storm$time==i] = ((life.table.LA.storm$n_adults[life.table.LA.storm$time==i]/2)* clutch_adult) + ((life.table.LA.storm$n_subadults[life.table.LA.storm$time==i]/2)* clutch_subadult) #maximum number of eggs produced given the number of adults and 1st years in the population and their respective clutch sizes
 		if (i ==1) {
 			life.table.LA.storm$n_fledge[life.table.LA.storm$time==i] = life.table.LA.storm$n_eggs[life.table.LA.storm$time==i]* egg_success_LA_storm
 			}
@@ -194,23 +194,23 @@ LA_recovery$mortality[j]<- adult_storm_mortality
 
 
 #storm decrement in LA w/ reduced adult survival + second event in year 11 
-LA_recovery2 <- data.frame(time=rep(NA,21), mortality=rep(NA,21))
+LA_recovery2 <- data.frame(time=rep(NA,26), mortality=rep(NA,26))
 
 timesteps = 120
-life.table.LA.storm2 = data.frame(time = 0:timesteps, n_adults = NA, n_1styr = NA, n_fledge = NA, n_eggs = NA)
+life.table.LA.storm2 = data.frame(time = 0:timesteps, n_adults = NA, n_subadults = NA, n_fledge = NA, n_eggs = NA)
 life.table.LA.storm2[1,] <- life.table.LA[1,]
 
-for (j in 1:21) {
+for (j in 1:26) {
 	adult_storm_mortality = (j-1)*0.01
 	for (i in 1:timesteps) {
 		if (i ==1 | i ==11) {
-			life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i] = (life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i-1]* (surv_adult-adult_storm_mortality)) + (life.table.LA.storm2$n_1styr[life.table.LA.storm2$time==i-1]* surv_1styr)
+			life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i] = (life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i-1]* (surv_adult-adult_storm_mortality)) + (life.table.LA.storm2$n_subadults[life.table.LA.storm2$time==i-1]* surv_subadult)
 		}
 		else {
-			life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i] = (life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i-1]* surv_adult) + (life.table.LA.storm2$n_1styr[life.table.LA.storm2$time==i-1]* surv_1styr)
+			life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i] = (life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i-1]* surv_adult) + (life.table.LA.storm2$n_subadults[life.table.LA.storm2$time==i-1]* surv_subadult)
 		}
-		life.table.LA.storm2$n_1styr[life.table.LA.storm2$time==i] = life.table.LA.storm2$n_fledge[life.table.LA.storm2$time==i-1]* surv_fledge
-		life.table.LA.storm2$n_eggs[life.table.LA.storm2$time==i] = ((life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i]/2)* clutch_adult) + ((life.table.LA.storm2$n_1styr[life.table.LA.storm2$time==i]/2)* clutch_1styr) #maximum number of eggs produced given the number of adults and 1st years in the population and their respective clutch sizes
+		life.table.LA.storm2$n_subadults[life.table.LA.storm2$time==i] = life.table.LA.storm2$n_fledge[life.table.LA.storm2$time==i-1]* surv_fledge
+		life.table.LA.storm2$n_eggs[life.table.LA.storm2$time==i] = ((life.table.LA.storm2$n_adults[life.table.LA.storm2$time==i]/2)* clutch_adult) + ((life.table.LA.storm2$n_subadults[life.table.LA.storm2$time==i]/2)* clutch_subadult) #maximum number of eggs produced given the number of adults and 1st years in the population and their respective clutch sizes
 		if (i ==1 | i ==11) {
 			life.table.LA.storm2$n_fledge[life.table.LA.storm2$time==i] = life.table.LA.storm2$n_eggs[life.table.LA.storm2$time==i]* egg_success_LA_storm
 			}
@@ -242,10 +242,10 @@ ggplot(recovery, aes(y=TX_time, x=mortality))+
 	geom_point(aes(y=TX_time2, x=mortality),size=2.5, col=TX_col, alpha=0.7, shape = 21, stroke=1)+
 	geom_point(aes(y=LA_time, x=mortality), size=3, col=LA_col, alpha=0.7)+ 
 	geom_point(aes(y=LA_time2, x=mortality),size=2.5, col=LA_col, alpha=0.7, shape = 21, stroke=1)+
-	geom_hline(yintercept=10, lty=2, color="gray") +
-	xlab("Storm Decrement to Adult Survival (%)")+
+	geom_hline(yintercept=10, lty=2) +
+	xlab("Reduction in Adult Survival (%)")+
 	ylab("Recovery Time (years)")+
-	scale_y_continuous(breaks=seq(0,110,20)) +
+	scale_y_continuous(breaks=seq(0,120,20)) +
 	scale_linetype_manual(values=c('solid','solid'))+
 	theme_minimal()+
 	theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
