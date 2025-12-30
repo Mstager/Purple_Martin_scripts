@@ -77,7 +77,7 @@
    		R script for conducting weather anomaly analyses and generating Figure 1b; requires **Table_S5.csv**.
 
 	7c) **Carcass.R** \
-    		R script for conducting morphological analyses and generating Figures 1d and S3 using quantitative magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S4.csv**.
+    		R script for conducting morphological analyses and generating Figure S1 using quantitative magnetic resonance data from carcasses; requires **Table_S3.csv** and **Table_S4.csv**.
 
    	7d) **2021_scout-arrival-data-pre_Feb20.csv** \
    		 Purple Martin Conservation Association Scout arrival data for the 2021 breeding season (across all U.S. states) pruned to include only dates before February 20, 2021. Used to plot Figure1a. Scout arrival observations are sightings of the very first martins seen for a colony in a given breeding season. More information at: https://www.purplemartin.org/research/8/scout-arrival-study/
@@ -92,11 +92,11 @@
 	R script to perform analyses of trends in Purple Martin Conservation Association Scout-Arrival Study data and generating plots for Figures 2a-2c, and S2.
 
 	8c) **Anomalous_arrival_analysis.R** \
-	R script to perform analyses relating arrival anomalies and weather anomalies, and to generate Figures 4a and 4c. Requires **TX_arrivals_edited.csv**, **LA_arrivals_edited.csv**, and **weather_anomaly.csv**.
+	R script to perform analyses relating arrival anomalies and weather anomalies, and to generate Figures 4a, 4d, and S4. Requires **TX_arrivals_edited.csv**, **LA_arrivals_edited.csv**, and **weather_anomaly.csv**.
 
 9) *Nests* directory: \
 	9a) **Nest.R** \
-	R script for perfoming analyses of trends in nesting data and generating Figures 2d and 4c; requires **PMW_Nestdata.csv**.
+	R script for perfoming analyses of trends in nesting data and generating Figures 2d, 4c, and S3; requires **PMW_Nestdata.csv**.
 
    	9b) **PMW_Nestdata.csv** \
 	Table of nesting data for the 10 focal states from the Purple Martin Conservation Association Project MartinWatch dataset.
