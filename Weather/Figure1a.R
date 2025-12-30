@@ -282,6 +282,8 @@ pmca_sf <- pmca %>%
 ##############################################################################
 #plot
 
+install.packages(c("raster","rgeos","RColorBrewer","ggplot2","maps","tools")) #if not already installed
+
 library(raster)
 library(rgeos)
 library(RColorBrewer)
