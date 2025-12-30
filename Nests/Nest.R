@@ -266,7 +266,7 @@ LA_nests <- bind_cols(LA_nests, setNames(as_tibble(predict(modLA, LA_nests, se.f
 
 LA_nests <- mutate(LA_nests, fit_resp = ilink(fit_link), right_upr = ilink(fit_link + (2*se_link)), right_lwr = ilink(fit_link - (2*se_link)))
 
-#Plot Figure S4
+#Plot Figure S3
 a<-ggplot(plot_df, aes(x = laydate)) +
   geom_line(aes(y = .fitted), color = "#4A6FE3", lwd=2) +
   labs(x = "First Egg Date (day of year)", y = "Nest Success") +
