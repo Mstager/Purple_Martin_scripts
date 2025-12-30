@@ -57,8 +57,8 @@ wilcox.test(Prop.Fat~Sex, puma_subset, alternative="two.sided")
 
 
 
-#Plot Figure 1d
+#Plot Figure S1a
 ggplot(puma_subset, aes(Prop.Fat))+ geom_histogram(color="black", fill="grey", bins=20) + geom_vline(xintercept=mean(puma_subset$Prop.Fat, na.rm=TRUE), linetype=2) + xlab("Fat Mass (proportion of body mass)") + theme_classic()
 
-#Plot Figure S1
+#Plot Figure S1b
 ggplot(puma_subset, aes(Prop.Lean))+ geom_histogram(color="black", fill="grey", bins=20) + geom_vline(xintercept=mean(puma_subset$Prop.Lean, na.rm=TRUE), linetype=2) +  xlab("Lean Mass (as proportion of body mass)") + theme_classic()
