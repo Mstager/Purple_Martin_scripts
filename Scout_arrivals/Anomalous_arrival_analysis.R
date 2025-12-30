@@ -288,7 +288,7 @@ ci95 <- predict(mod_la_jun, la_jun, interval = "confidence", level = 0.95)
 
 la_jun <- cbind(la_jun, ci95)
 
-#plot Figure S5
+#plot Figure S4
 new_la<-merge(la_temporal, la_jun, by.x="YEAR", by.y="Year")
 
 ggplot(data=new_la, aes(y=yday, x=YEAR)) + 
