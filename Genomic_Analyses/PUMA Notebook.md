@@ -16,7 +16,7 @@ Purple Martin samples include 37 breeding individuals collected in May 2021 and 
 
 ### DNA Extraction/Library Preparation/Sequencing
 
-DNA was isolated from blood of live individuals using Zymo Quick-DNA Miniprep Plus Kit (#D4068) or muscle samples of deceased individuals using Qiagen DNeasy Blood & Tissue Kit. Exctracts were sent to Novogene Co, Ltd (Sacramento, CA, USA) for whole-genome library preparation and sequencing. Libraries were pooled and sequenced on an Illumina NovaSeq X Plus platform (150 bp paired-end reads). Raw sequencing data (13,633,575,406 reads) for 66 samples were received at UCF. Raw sequences are deposited on NCBI's Sequence Read Archive (BioProject #).
+DNA was isolated from blood of live individuals using Zymo Quick-DNA Miniprep Plus Kit (#D4068) or muscle samples of deceased individuals using Qiagen DNeasy Blood & Tissue Kit. Exctracts were sent to Novogene Co, Ltd (Sacramento, CA, USA) for whole-genome library preparation and sequencing. Libraries were pooled and sequenced on an Illumina NovaSeq X Plus platform (150 bp paired-end reads). Raw sequencing data (13,633,575,406 reads) for 66 samples were received at UCF. Raw sequences are deposited on NCBI's Sequence Read Archive (BioProject #PRJNA1241750).
 
 *From Novogene's report summary:*
 
