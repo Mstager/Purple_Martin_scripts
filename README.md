@@ -111,7 +111,7 @@
     Data included in the supplemental materials in .csv format: \
     	11a) **Table_S3.csv**: \
     	Individual data for 292 carcasses, including LSU MNS tissue number, collection date, location, latitude, and longitude, sex (determined by plumage), morphological measurements, and body composition (fat and lean masses). [_This table is identical to Stager_Source_Data_ED_Fig1.xlsx accompanying the published version of this manuscript._] \
-\    
+\
     	11b) **Table_S4.csv**: \
     	Origin and morphological data for individuals sampled in May 2021. Latitudes and longitudes have been rounded to the nearest hundredth to maintain homeowner privacy. Sex (male [M] or female [F]) and age (subadult [SY] or adult [ASY]) were determined by plumage. [_This table is identical to Stager_Source_Data_FigX.xlsx accompanying the published version of this manuscript._] \
 \
