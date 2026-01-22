@@ -110,10 +110,13 @@
 11) *Supp_Tables* directory: \
     Data included in the supplemental materials in .csv format: \
     	11a) **Table_S3.csv**: \
-    	Individual data for 292 carcasses, including LSU MNS tissue number, collection date, location, latitude, and longitude, sex (determined by plumage), morphological measurements, and body composition (fat and lean masses). [_This table is identical to Stager_Source_Data_ED_Fig1.xlsx accompanying the published version of this manuscript._] 
+    	Individual data for 292 carcasses, including LSU MNS tissue number, collection date, location, latitude, and longitude, sex (determined by plumage), morphological measurements, and body composition (fat and lean masses). [_This table is identical to Stager_Source_Data_ED_Fig1.xlsx accompanying the published version of this manuscript._] \
+\    
     	11b) **Table_S4.csv**: \
     	Origin and morphological data for individuals sampled in May 2021. Latitudes and longitudes have been rounded to the nearest hundredth to maintain homeowner privacy. Sex (male [M] or female [F]) and age (subadult [SY] or adult [ASY]) were determined by plumage. [_This table is identical to Stager_Source_Data_FigX.xlsx accompanying the published version of this manuscript._] \
-    	11c) **Table_S5.csv**: \
+\
+		11c) **Table_S5.csv**: \
     	Localities for 30 sampling sites of purple martin carcasses. Latitudes and longitudes have been rounded to the nearest hundredth to maintain privacy of homeowners. [_This table is identical to Stager_Source_Data_Fig1.xlsx accompanying the published version of this manuscript._] \
-    	11d) **Table_S6.csv**: \
+\
+		11d) **Table_S6.csv**: \
     	Individual information for 66 samples for which whole-genome sequencing was performed. Collection date and collection locale with corresponding latitudes and longitudes (rounded to the nearest hundredth to maintain homeowner privacy) are listed. Cohort (survivor or victim), age (ASY = adult [after second year]; SY = subadult [second year]) and sex (M = male; F = female) are indicated. BioSample Accession number corresponds to raw sequence archived on NCBI’s Sequence Read Archive. [_This table is identical to Stager_Source_Data_Fig3.xlsx accompanying the published version of this manuscript_.]
